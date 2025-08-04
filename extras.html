@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clew Bot - Extras Showcase</title> <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="icon" href="/assets/Logo.png" type="image/png">
+    
+    <style>
+        /* Los estilos son exactamente los mismos que en showcase.html */
+        .showcase-body { background-color: #000; color: var(--text-color); font-family: 'Poppins', sans-serif; padding: 2rem 1.5rem; min-height: 100vh; }
+        .showcase-hero { text-align: center; padding: 4rem 1rem 2rem 1rem; }
+        .gradient-title { font-size: 5rem; font-weight: 800; letter-spacing: -2px; margin: 0; background: linear-gradient(90deg, #FFFFFF, var(--primary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .showcase-hero p { font-size: 1.25rem; color: var(--text-color-muted); max-width: 600px; margin: 1rem auto 0 auto; }
+        .dashboard-container { background-color: #000; border: 0px solid var(--glass-border); border-radius: 1rem; padding: 1.5rem; max-width: 1200px; margin: 0 auto; min-height: 60vh; }
+        .dashboard-content { display: flex; justify-content: center; align-items: center; }
+        .showcase-video { width: 100%; height: auto; border-radius: 8px; }
+        @media (max-width: 992px) { .gradient-title { font-size: 3rem; } }
+    </style>
+</head>
+<body class="showcase-body">
+
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="nav__logo">
+                <img src="/assets/Logo.png" alt="logo" class="nav__logo-img">
+            </a>
+            <div class="nav__desktop-menu">
+                <ul class="nav__list">
+                    <li><a href="index.html" class="nav__link"><span>Home</span></a></li>
+                    <li><a href="commands.html" class="nav__link"><span>Commands</span></a></li>
+                    <li><a href="pricing.html" class="nav__link"><span>Pricing</span></a></li>
+                    <li><a href="index.html#faq" class="nav__link"><span>FAQ</span></a></li>
+                    <li><a href="changelogs.html" class="nav__link"><span>Changelogs</span></a></li>
+                    <li><a href="showcase.html" class="nav__link"><span>Showcase</span></a></li>
+                </ul>
+            </div>
+            <a href="https://discord.gg/7wRC6wq44v" class="nav__button nav__button--desktop">
+                <i class="fab fa-discord"></i> DISCORD
+            </a>
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <div class="nav__mobile-menu" id="nav-menu">
+        <div class="nav__mobile-menu-content">
+            <div class="nav__close" id="nav-close"><i class="fas fa-times"></i></div>
+            <ul class="nav__list--mobile">
+                <li><a href="index.html" class="nav__link--mobile"><i class="fas fa-home nav__icon"></i> Home</a></li>
+                <li><a href="commands.html" class="nav__link--mobile"><i class="fas fa-terminal nav__icon"></i> Commands</a></li>
+                <li><a href="pricing.html" class="nav__link--mobile"><i class="fas fa-dollar-sign nav__icon"></i> Pricing</a></li>
+                <li><a href="index.html#faq" class="nav__link--mobile"><i class="fas fa-question-circle nav__icon"></i> FAQ</a></li>
+                <li><a href="changelogs.html" class="nav__link--mobile"><i class="fas fa-history nav__icon"></i> Changelogs</a></li>
+                <li><a href="showcase.html" class="nav__link--mobile"><i class="fa-solid fa-file-video"></i> Showcase</a></li>
+            </ul>
+            <a href="https://discord.gg/7wRC6wq44v" class="nav__button">
+                <i class="fab fa-discord"></i> DISCORD
+            </a>
+        </div>
+    </div>
+
+        <section class="showcase-hero">
+            <h1 class="gradient-title home__title">SHOWCASE</h1>
+            <p class="home__subtitle">See how the EXTRAS features and commands work.</p>
+        </section>
+
+        <div class="commands__nav">
+            <a href="showcase.html" class="commands__nav-btn">Showcase</a>
+            <a href="moderation.html" class="commands__nav-btn">Moderation</a>
+            <a href="sales.html" class="commands__nav-btn">Sales Deliveries</a>
+            <a href="tickets.html" class="commands__nav-btn">Ticket System</a>
+            <a href="extras.html" class="commands__nav-btn active">Extras</a>
+        </div>
+
+        <div class="dashboard-container home__subtitle">
+    <main class="dashboard-content">
+        <img src="/assets/showcase.png" alt="Showcase en progreso" class="showcase-video" />
+    </main>
+</div>
+    </main>
+
+<footer class="footer">
+        <div class="footer__container container">
+            <div class="footer__logo">
+                <img src="/assets/Logo.png" alt="logo" class="footer__logo-img">
+                <h2 class="footer__title">Clew Bot</h2>
+                <p class="footer__description">
+                    Soluciones automatizadas para servidores de Discord. Personalización, rendimiento y soporte dedicado.
+                </p>
+            </div>
+            <ul class="footer__links">
+                <li><a href="index.html" class="footer__link">Home</a></li>
+                <li><a href="commands.html" class="footer__link">Commands</a></li>
+                <li><a href="pricing.html" class="footer__link">Pricing</a></li>
+                <li><a href="changelogs.html" class="footer__link">Changelogs</a></li>
+                <li><a href="showcase.html" class="footer__link">Showcase</a></li>
+                <li><a href="https://discord.gg/7wRC6wq44v" class="footer__link">Discord</a></li>
+            </ul>
+            <div class="footer__socials">
+                <a href="https://discord.gg/7wRC6wq44v" class="footer__social-link"><i class="fab fa-discord"></i></a>
+                
+            </div>
+            <p class="footer__copy">
+                Clew Bot © 2024-2025. All rights reserved. Made by Carpaa.
+            </p>
+        </div>
+    </footer>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>

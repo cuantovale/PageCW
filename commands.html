@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clew Bot - Commands</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="icon" href="/assets/Logo.png" type="image/png">
+</head>
+<body>
+
+    <header class="header" id="header">
+    <nav class="nav container">
+        <a href="index.html" class="nav__logo">
+            <img src="/assets/Logo.png" alt="logo" class="nav__logo-img">
+        </a>
+
+        <div class="nav__desktop-menu">
+            <ul class="nav__list">
+                <li><a href="index.html" class="nav__link"><span>Home</span></a></li>
+                <li><a href="commands.html" class="nav__link"><span>Commands</span></a></li>
+                <li><a href="pricing.html" class="nav__link"><span>Pricing</span></a></li>
+                <li><a href="index.html#faq" class="nav__link"><span>FAQ</span></a></li>
+                <li><a href="changelogs.html" class="nav__link"><span>Changelogs</span></a></li>
+                <li><a href="showcase.html" class="nav__link"><span>Showcase</span></a></li>
+            </ul>
+        </div>
+
+        <a href="https://discord.gg/7wRC6wq44v" class="nav__button nav__button--desktop">
+            <i class="fab fa-discord"></i> DISCORD
+        </a>
+
+        <div class="nav__toggle" id="nav-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+</header>
+
+<div class="nav__mobile-menu" id="nav-menu">
+    <div class="nav__mobile-menu-content">
+        <div class="nav__close" id="nav-close"><i class="fas fa-times"></i></div>
+        <ul class="nav__list--mobile">
+            <li><a href="index.html" class="nav__link--mobile"><i class="fas fa-home nav__icon"></i> Home</a></li>
+            <li><a href="commands.html" class="nav__link--mobile"><i class="fas fa-terminal nav__icon"></i> Commands</a></li>
+            <li><a href="pricing.html" class="nav__link--mobile"><i class="fas fa-dollar-sign nav__icon"></i> Pricing</a></li>
+            <li><a href="index.html#faq" class="nav__link--mobile"><i class="fas fa-question-circle nav__icon"></i> FAQ</a></li>
+            <li><a href="changelogs.html" class="nav__link--mobile"><i class="fas fa-history nav__icon"></i> Changelogs</a></li>
+            <li><a href="showcase.html" class="nav__link--mobile"><i class="fa-solid fa-file-video"></i> Showcase</a></li>
+        </ul>
+        <a href="https://discord.gg/7wRC6wq44v" class="nav__button">
+            <i class="fab fa-discord"></i> DISCORD
+        </a>
+    </div>
+</div>
+
+   <main>
+        <section class="commands-page section">
+            <h2 class="section__title home__title">Bot Commands</h2>
+            <div class="container">
+
+                <div class="commands__nav">
+                    <button class="commands__nav-btn active">Moderation</button>
+                    <button class="commands__nav-btn">Sales Deliveries</button>
+                    <button class="commands__nav-btn">Ticket System</button>
+                    <button class="commands__nav-btn">Extras</button>
+                </div>
+
+                <div class="commands__content active ">
+                    <div class="command-list">
+                        <div class="command-row">
+                            <span class="command-name">/ban</span>
+                            <span class="command-description">Ban user from the server.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">/unban</span>
+                            <span class="command-description">Unban a user from the server by Discord ID.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">/kick</span>
+                            <span class="command-description">Remove user from server.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">/mute</span>
+                            <span class="command-description">Temporarily mute user from server.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">/unmute</span>
+                            <span class="command-description">Remove temporary mute from user.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">/temprole</span>
+                            <span class="command-description">Give temporary role to user</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">/channel</span>
+                            <span class="command-description">Lock/unlock writing to a channel.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">/cleardm</span>
+                            <span class="command-description">Delete messages that the bot sent to a user in the DM.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">/clear</span>
+                            <span class="command-description">Delete a specific number of messages from a channel.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="commands__content">
+                    <div class="command-list">
+                        <div class="command-row">
+                            <span class="command-name">/key</span>
+                            <span class="command-description">Deliver the cheat key with its information to the user. Send proof automatically.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">/account</span>
+                            <span class="command-description">Deliver account information to the user. Send proof automatically.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">/rockstar</span>
+                            <span class="command-description">Automatically deliver Rockstar account, with stock control and automatic proof delivery.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">/discord</span>
+                            <span class="command-description">Automatically deliver Discord account, with stock control and automatic proof delivery.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">/steam</span>
+                            <span class="command-description">Automatically deliver Steam account, with stock control and automatic proof delivery.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="commands__content">
+                    <div class="command-list">
+                        <div class="command-row">
+                            <span class="command-name">.ticketsend</span>
+                            <span class="command-description">Send ticket panel.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">.rename</span>
+                            <span class="command-description">Change ticket name.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">.add</span>
+                            <span class="command-description">Add user to ticket.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">.remove</span>
+                            <span class="command-description">Remove user from ticket.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">.addrole</span>
+                            <span class="command-description">Add role to ticket.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">.removerol</span>
+                            <span class="command-description">Remove role from ticket.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="commands__content">
+                     <div class="command-list">
+                        <div class="command-row">
+                            <span class="command-name">.verify</span>
+                            <span class="command-description">Send verification system.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">.pago</span>
+                            <span class="command-description">Send information about payment methods.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">.alias</span>
+                            <span class="command-description">Send payment method information.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">.crytpo</span>
+                            <span class="command-description">Send payment method information.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">.paypal</span>
+                            <span class="command-description">Send payment method information.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">.terms</span>
+                            <span class="command-description">Send the terms and conditions of the server.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">.purge</span>
+                            <span class="command-description">Same method as /clear but with prefix.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">.partner</span>
+                            <span class="command-description">Send the partner role system.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">/conversion</span>
+                            <span class="command-description">Convert foreign currencies to ARS.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">/avatar</span>
+                            <span class="command-description">View a user profile picture.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">/profile</span>
+                            <span class="command-description">View a user profile.</span>
+                        </div>
+                        <div class="command-row">
+                            <span class="command-name">/giveaway</span>
+                            <span class="command-description">Create a giveaway.</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+<style>
+    .cta-section {
+        padding: 4rem 1.5rem;
+        text-align: center;
+    }
+
+    .cta-card {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 2.5rem;
+        border-radius: 1rem;
+        background-color: var(--surface-color);
+        border: 1px solid var(--glass-border);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+    
+    .cta-card h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 1rem;
+        color: #fff;
+    }
+
+    .cta-card p {
+        color: var(--text-color-muted);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 0.8rem 2rem;
+        background-color: var(--primary-color);
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .cta-button:hover {
+        transform: scale(1.05);
+    }
+</style>
+
+<section class="cta-section">
+    <div class="cta-card glass-effect resplandor-hover">
+        <h3>Want to see more?</h3>
+        <p>Check out our showcase to see the bot's features and commands in a live demonstration.</p>
+        <a href="showcase.html" class="cta-button">View Showcase</a>
+    </div>
+</section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer__container container">
+            <div class="footer__logo">
+                <img src="/assets/Logo.png" alt="logo" class="footer__logo-img">
+                <h2 class="footer__title">Clew Bot</h2>
+                <p class="footer__description">
+                    Soluciones automatizadas para servidores de Discord. Personalización, rendimiento y soporte dedicado.
+                </p>
+            </div>
+            
+            <ul class="footer__links">
+                <li><a href="index.html" class="footer__link">Home</a></li>
+                <li><a href="commands.html" class="footer__link">Commands</a></li>
+                <li><a href="pricing.html" class="footer__link">Pricing</a></li>
+                <li><a href="changelogs.html" class="footer__link">Changelogs</a></li>
+                <li><a href="showcase.html" class="footer__link">Showcase</a></li>
+                <li><a href="https://discord.gg/7wRC6wq44v" class="footer__link">Discord</a></li>
+            </ul>
+
+            <div class="footer__socials">
+                <a href="https://discord.gg/7wRC6wq44v" class="footer__social-link"><i class="fab fa-discord"></i></a>
+                
+            </div>
+
+            <p class="footer__copy">
+                Clew Bot © 2024-2025. All rights reserved. Made by Carpaa.
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
