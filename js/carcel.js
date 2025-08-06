@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let state = { status: 'ONLINE', selectedInfractions: [] };
     let limitAlertShown = false;
 
-    // --- SELECCIÓN DE ELEMENTOS DEL DOM ---
     const grid = document.getElementById('infractions-grid');
     const onlineBtn = document.querySelector('.btn-status[data-status="ONLINE"]');
     const offlineBtn = document.querySelector('.btn-status[data-status="OFFLINE"]');
@@ -45,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const closeModalBtns = document.querySelectorAll('.close-modal-btn');
 
-    // --- LÓGICA DE LA INTERFAZ ---
 
     function moveSlider() {
         const activeButton = document.querySelector('.btn-status.active');
@@ -105,9 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
         } 
         else {
             const currentTotalTime = state.selectedInfractions.reduce((sum, inf) => sum + inf.time, 0);
-            // --- CAMBIO #2: El bloqueo ahora se activa si el tiempo a añadir SUPERA 180 ---
             if ((currentTotalTime + infraction.time) > 180) {
-                showCustomAlert('Al añadir esta sanción superarás el límite de 180 minutos. No puedes añadirla.', 'Límite Superado');
+                showCustomAlert('Supera el limite de tiempo de carcel. Tenés que banearlo.', 'Límite Superado');
                 return;
             }
             state.selectedInfractions.push(infraction);
@@ -193,7 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
         alertModal.classList.remove('visible');
     }
 
-    // --- INICIALIZACIÓN Y EVENT LISTENERS ---
     onlineBtn.addEventListener('click', () => setStatus('ONLINE'));
     offlineBtn.addEventListener('click', () => setStatus('OFFLINE'));
     resetBtn.addEventListener('click', resetForm);
