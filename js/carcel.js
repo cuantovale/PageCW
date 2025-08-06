@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             offlineBtn.classList.add('active');
             onlineBtn.classList.remove('active');
             playerIdLabel.textContent = 'Licencia';
-            playerIdInput.placeholder = 'license:a1b2c3d4e5f6...';
+            playerIdInput.placeholder = 'Ej: 62aa42a3e9e304ad122...';
         }
         moveSlider();
     }
@@ -129,15 +129,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 showCustomAlert('El ID solo puede contener números.');
                 return;
             }
-        } else {
-            if (!playerId.startsWith('license:')) {
-                showCustomAlert('La licencia debe comenzar con "license:".');
-                return;
-            }
         }
         
         const commandPrefix = state.status === 'ONLINE' ? '/carcel' : '/carceloffline';
-        const finalCommand = `${commandPrefix} ${playerId} ${totalTime} ${reason} (por: ${sanctionedBy})`;
+        const finalCommand = `${commandPrefix} ${playerId} ${totalTime} ${reason} by ${sanctionedBy}`;
 
         commandOutput.textContent = finalCommand;
         commandModal.classList.add('visible');
