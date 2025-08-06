@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clew Bot - Carcel</title>
+    
+    <link rel="stylesheet" href="/css/carcel.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/assets/Logo.png" type="image/png">
+</head>
+<body>
+
+    <div id="particles-js"></div>
+
+    <header>
+            <img src="/assets/logok.png" alt="Logo del Servidor" class="logo-imagen">         
+        </header>
+    
+    <div class="container">
+
+        <main>
+            <section class="control-panel">
+                <div class="input-group status-switcher">
+                    <label>Online/Offline</label>
+                    <div class="btn-group" id="status-group">
+                        <button class="btn btn-status active" data-status="ONLINE">ONLINE</button>
+                        <button class="btn btn-status" data-status="OFFLINE">OFFLINE</button>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="player-id-input" id="player-id-label">ID:</label>
+                    <input type="text" id="player-id-input" placeholder="Ej: 222">
+                </div>
+                <div class="input-group">
+                    <label for="by-input">By:</label>
+                    <input type="text" id="by-input" placeholder="Tu by.">
+                </div>
+                <div class="input-group">
+                    <label for="time-input">Tiempo Total:</label>
+                    <input type="number" id="time-input" placeholder="0" readonly>
+                </div>
+                <div class="main-actions">
+                    <button class="btn btn-primary" id="generate-btn">Generar Comando</button>
+                    <button class="btn btn-secondary" id="reset-btn">Reset</button>
+                </div>
+            </section>
+            
+            <section class="summary-section">
+                <h3>Motivos:</h3>
+                <p id="reasons-summary">Ninguna sanción seleccionada.</p>
+            </section>
+
+            <section class="infractions-grid" id="infractions-grid"></section>
+        </main>
+    </div>
+    
+    <div class="modal-overlay" id="command-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Comando</h2>
+                <button class="close-modal-btn">&times;</button>
+            </div>
+            <p id="command-output" class="command-output"></p>
+            <button class="btn btn-primary" id="copy-command-btn">Copiar</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="alert-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="alert-title">Atención</h2>
+                <button class="close-modal-btn">&times;</button>
+            </div>
+            <p id="alert-message"></p>
+            <button class="btn btn-primary" id="alert-ok-btn">OK</button>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer__container container">
+            <div class="footer__logo">
+                <img src="/assets/Logo.png" alt="logo" class="footer__logo-img">
+                <h2 class="footer__title">Clew Bot</h2>
+                <p class="footer__description">
+                    Soluciones automatizadas para servidores de Discord. Personalización, rendimiento y soporte dedicado.
+                </p>
+            </div>
+            <ul class="footer__links">
+                <li><a href="index.html" class="footer__link">Home</a></li>
+                <li><a href="commands.html" class="footer__link">Commands</a></li>
+                <li><a href="pricing.html" class="footer__link">Pricing</a></li>
+                <li><a href="changelogs.html" class="footer__link">Changelogs</a></li>
+                <li><a href="showcase.html" class="footer__link">Showcase</a></li>
+                <li><a href="https://discord.gg/7wRC6wq44v" class="footer__link">Discord</a></li>
+            </ul>
+            <div class="footer__socials">
+                <a href="https://discord.gg/7wRC6wq44v" class="footer__social-link"><i class="fab fa-discord"></i></a>
+                
+            </div>
+            <p class="footer__copy">
+                Clew Bot © 2024-2025. All rights reserved. Made by Carpaa.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="js/carcel.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
