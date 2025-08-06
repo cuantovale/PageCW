@@ -19,7 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     let state = { status: 'ONLINE', selectedInfractions: [] };
+    let limitAlertShown = false;
 
+    // --- SELECCIÓN DE ELEMENTOS DEL DOM ---
     const grid = document.getElementById('infractions-grid');
     const onlineBtn = document.querySelector('.btn-status[data-status="ONLINE"]');
     const offlineBtn = document.querySelector('.btn-status[data-status="OFFLINE"]');
@@ -43,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const closeModalBtns = document.querySelectorAll('.close-modal-btn');
 
+    // --- LÓGICA DE LA INTERFAZ ---
 
     function moveSlider() {
         const activeButton = document.querySelector('.btn-status.active');
@@ -62,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             offlineBtn.classList.add('active');
             onlineBtn.classList.remove('active');
             playerIdLabel.textContent = 'Licencia';
-            playerIdInput.placeholder = 'Ej: 62aa42a3e9e304ad122...';
+            playerIdInput.placeholder = 'license:a1b2c3d4e5f6...';
         }
         moveSlider();
     }
@@ -76,9 +79,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalTime = state.selectedInfractions.reduce((sum, infraction) => sum + infraction.time, 0);
         timeInput.value = totalTime > 0 ? totalTime : '';
 
-
-        if (totalTime >= 180) {
+        if (totalTime > 180 && !limitAlertShown) {
             showCustomAlert('Límite de Tiempo en la Cárcel: 180 - Una vez superado el Límite se deberá Banear', 'Límite Superado');
+            limitAlertShown = true; 
+        } 
+        else if (totalTime <= 180) {
+            limitAlertShown = false;
         }
 
         if (state.selectedInfractions.length === 0) {
@@ -92,10 +98,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleCardClick(card, infraction) {
         const index = state.selectedInfractions.findIndex(item => item.title === infraction.title);
+        
         if (index > -1) {
             state.selectedInfractions.splice(index, 1);
             card.classList.remove('selected');
-        } else {
+        } 
+        else {
+            const currentTotalTime = state.selectedInfractions.reduce((sum, inf) => sum + inf.time, 0);
+            // --- CAMBIO #2: El bloqueo ahora se activa si el tiempo a añadir SUPERA 180 ---
+            if ((currentTotalTime + infraction.time) > 180) {
+                showCustomAlert('Al añadir esta sanción superarás el límite de 180 minutos. No puedes añadirla.', 'Límite Superado');
+                return;
+            }
             state.selectedInfractions.push(infraction);
             card.classList.add('selected');
         }
@@ -115,18 +129,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const reason = state.selectedInfractions.map(inf => inf.title).join(', ');
 
         if (!playerId || state.selectedInfractions.length === 0) {
-            showCustomAlert('Debes poner un ID/Licencia y seleccionar al menos una sanción.', 'Faltan Datos');
+            showCustomAlert('Poné una ID/Licencia y seleccioná al menos una sanción.', 'Faltan Datos');
             return;
         }
         if (!sanctionedBy) {
-            showCustomAlert('El campo "By" no puede estar vacío.', 'Faltan Datos');
+            showCustomAlert('Poné un "By".', 'Faltan Datos');
             return;
         }
         
         if (state.status === 'ONLINE') {
             const isNumeric = /^[0-9]+$/.test(playerId);
             if (!isNumeric) {
-                showCustomAlert('El ID solo puede contener números.');
+                showCustomAlert('El ID solo puede tener números.');
+                return;
+            }
+        } else {
+             if (!playerId.startsWith('license:')) {
+                showCustomAlert('La licencia debe comenzar con "license:".');
                 return;
             }
         }
@@ -141,6 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function resetForm() {
         playerIdInput.value = '';
         state.selectedInfractions = [];
+        limitAlertShown = false; 
         document.querySelectorAll('.infraction-card.selected').forEach(card => card.classList.remove('selected'));
         setStatus('ONLINE');
         updateSummary();
@@ -173,6 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
         alertModal.classList.remove('visible');
     }
 
+    // --- INICIALIZACIÓN Y EVENT LISTENERS ---
     onlineBtn.addEventListener('click', () => setStatus('ONLINE'));
     offlineBtn.addEventListener('click', () => setStatus('OFFLINE'));
     resetBtn.addEventListener('click', resetForm);
