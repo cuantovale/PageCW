@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let state = { status: 'ONLINE', selectedInfractions: [] };
 
-    // --- SELECCIÓN DE ELEMENTOS DEL DOM ---
     const grid = document.getElementById('infractions-grid');
     const onlineBtn = document.querySelector('.btn-status[data-status="ONLINE"]');
     const offlineBtn = document.querySelector('.btn-status[data-status="OFFLINE"]');
@@ -34,20 +33,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetBtn = document.getElementById('reset-btn');
     const copyBtn = document.getElementById('copy-command-btn');
 
-    // Elementos del modal de COMANDO
     const commandModal = document.getElementById('command-modal');
     const commandOutput = document.getElementById('command-output');
     
-    // Elementos del modal de ALERTA
     const alertModal = document.getElementById('alert-modal');
     const alertTitle = document.getElementById('alert-title');
     const alertMessage = document.getElementById('alert-message');
     const alertOkBtn = document.getElementById('alert-ok-btn');
     
-    // Botones de cierre para AMBOS modales
     const closeModalBtns = document.querySelectorAll('.close-modal-btn');
 
-    // --- LÓGICA DE LA INTERFAZ ---
 
     function moveSlider() {
         const activeButton = document.querySelector('.btn-status.active');
@@ -80,6 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateSummary() {
         const totalTime = state.selectedInfractions.reduce((sum, infraction) => sum + infraction.time, 0);
         timeInput.value = totalTime > 0 ? totalTime : '';
+
+
+        if (totalTime >= 180) {
+            showCustomAlert('Límite de Tiempo en la Cárcel: 180 - Una vez superado el Límite se deberá Banear', 'Límite Superado');
+        }
+
         if (state.selectedInfractions.length === 0) {
             reasonsSummary.textContent = 'Ninguna sanción seleccionada.';
             reasonsSummary.style.fontStyle = 'italic';
@@ -101,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateSummary();
     }
     
-    /** Muestra el modal de alerta personalizado */
     function showCustomAlert(message, title = 'Error') {
         alertTitle.textContent = title;
         alertMessage.textContent = message;
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         const commandPrefix = state.status === 'ONLINE' ? '/carcel' : '/carceloffline';
-        const finalCommand = `${commandPrefix} ${playerId} ${totalTime} ${reason} by ${sanctionedBy}`;
+        const finalCommand = `${commandPrefix} ${playerId} ${totalTime} ${reason} (por: ${sanctionedBy})`;
 
         commandOutput.textContent = finalCommand;
         commandModal.classList.add('visible');
@@ -178,14 +178,12 @@ document.addEventListener('DOMContentLoaded', () => {
         alertModal.classList.remove('visible');
     }
 
-    // --- INICIALIZACIÓN Y EVENT LISTENERS ---
     onlineBtn.addEventListener('click', () => setStatus('ONLINE'));
     offlineBtn.addEventListener('click', () => setStatus('OFFLINE'));
     resetBtn.addEventListener('click', resetForm);
     generateBtn.addEventListener('click', generateCommand);
     copyBtn.addEventListener('click', copyCommand);
     
-    // Listeners para cerrar los modales
     closeModalBtns.forEach(btn => btn.addEventListener('click', closeAllModals));
     alertOkBtn.addEventListener('click', closeAllModals);
     commandModal.addEventListener('click', (e) => { if (e.target === commandModal) closeAllModals(); });
