@@ -1,21 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- Animación de Scroll para Header ---
     const header = document.getElementById('header');
-    const body = document.body; // Nos aseguramos de tener el body
+    const body = document.body; 
     if (header) {
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 header.classList.add('scrolled');
-                body.classList.add('page-scrolled'); // <-- LÍNEA AÑADIDA
+                body.classList.add('page-scrolled'); 
             } else {
                 header.classList.remove('scrolled');
-                body.classList.remove('page-scrolled'); // <-- LÍNEA AÑADIDA
+                body.classList.remove('page-scrolled');
             }
         });
 
 
-    // --- Lógica del Menú Móvil ---
     const mobileMenu = document.getElementById('nav-menu');
     const navToggle = document.getElementById('nav-toggle');
     const navClose = document.getElementById('nav-close');
@@ -33,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // --- Tabs de la página de Comandos ---
     const tabs = document.querySelectorAll('.commands__nav-btn');
     const all_content = document.querySelectorAll('.commands__content');
 
@@ -51,16 +48,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-// --- Lógica para el Selector de Moneda (con Descuento y Animación de Botón) ---
 const currencySwitcher = document.querySelector('.currency-switcher');
 if (currencySwitcher) {
     const currencyBtns = currencySwitcher.querySelectorAll('.currency-btn');
     const allPrices = document.querySelectorAll('.pricing__card__price');
     const slidingPill = currencySwitcher.querySelector('.sliding-pill');
 
-    // Función que anima un número de un valor inicial a uno final
     function animateValue(element, start, end, duration) {
-        if (!element) return; // Si el elemento no existe, no hace nada
+        if (!element) return;
         let startTimestamp = null;
         const step = (timestamp) => {
             if (!startTimestamp) startTimestamp = timestamp;
@@ -74,19 +69,14 @@ if (currencySwitcher) {
         window.requestAnimationFrame(step);
     }
     
-    // Función para mover la píldora del botón
     function movePill() {
         const activeButton = currencySwitcher.querySelector('.currency-btn.active');
         if (activeButton && slidingPill) {
             slidingPill.style.width = activeButton.offsetWidth + 'px';
-            slidingPill.style.transform = `translateX(${activeButton.offsetLeft}px)`;
-            // Ajuste para el padding del contenedor
             const parentPadding = parseFloat(window.getComputedStyle(activeButton.parentElement).paddingLeft);
             slidingPill.style.transform = `translateX(${activeButton.offsetLeft - parentPadding}px)`;
         }
     }
-    
-    // Posiciona la píldora correctamente al cargar la página
     setTimeout(movePill, 100); 
 
     currencyBtns.forEach(btn => {
@@ -95,41 +85,28 @@ if (currencySwitcher) {
             
             currencyBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            movePill(); // Mueve la píldora al hacer clic
+            movePill();
 
             const targetCurrency = btn.dataset.currency;
 
             allPrices.forEach(priceEl => {
-                const originalValueSpan = priceEl.querySelector('.price-value-original');
-                const saleValueSpan = priceEl.querySelector('.price-value');
+                const valueSpan = priceEl.querySelector('.price-value');
+                if (!valueSpan) return;
                 
-                // Leemos los valores iniciales para animar desde ahí
-                const startOriginal = originalValueSpan ? parseInt(originalValueSpan.textContent.replace(/\./g, '')) : 0;
-                const startSale = saleValueSpan ? parseInt(saleValueSpan.textContent.replace(/\./g, '')) : 0;
+                const startValue = parseInt(valueSpan.textContent.replace(/\./g, ''));
+                
+                const endValue = (targetCurrency === 'ars') 
+                    ? parseInt(priceEl.dataset.priceArs) 
+                    : parseInt(priceEl.dataset.priceUsd);
 
-                // Leemos los valores finales correctos usando camelCase
-                let endOriginal, endSale;
-                if (targetCurrency === 'ars') {
-                    endOriginal = parseInt(priceEl.dataset.priceArsOriginal);
-                    endSale = parseInt(priceEl.dataset.priceArsSale);
-                } else {
-                    endOriginal = parseInt(priceEl.dataset.priceUsdOriginal);
-                    endSale = parseInt(priceEl.dataset.priceUsdSale);
-                }
-
-                // Animamos los valores si existen
-                if (!isNaN(endSale)) {
-                    animateValue(saleValueSpan, startSale, endSale, 500);
-                }
-                if (!isNaN(endOriginal)) {
-                    animateValue(originalValueSpan, startOriginal, endOriginal, 500);
+                if (!isNaN(startValue) && !isNaN(endValue)) {
+                    animateValue(valueSpan, startValue, endValue, 500);
                 }
             });
         });
     });
 }
 
-    // --- Lógica para el botón "Volver Arriba" ---
     const scrollUp = document.getElementById('scroll-up');
     if (scrollUp) {
         window.addEventListener('scroll', () => {
@@ -141,7 +118,6 @@ if (currencySwitcher) {
         });
     }
     
-    // --- Lógica para la Animación de Changelogs ---
     const changelogSummaries = document.querySelectorAll('.changelog__summary');
     if (changelogSummaries.length > 0) {
         changelogSummaries.forEach(summary => {
@@ -162,21 +138,18 @@ if (currencySwitcher) {
         });
     }
 
-    // --- Lógica para activar animaciones al hacer scroll ---
     const animatedElements = document.querySelectorAll('.anim-on-scroll');
 
     if (animatedElements.length > 0) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Añade la clase 'is-visible' para activar la animación
                     entry.target.classList.add('is-visible');
-                    // Opcional: deja de observar el elemento una vez animado
                     observer.unobserve(entry.target);
                 }
             });
         }, {
-            threshold: 0.1 // La animación se activa cuando el 10% del elemento es visible
+            threshold: 0.1
         });
 
         animatedElements.forEach(element => {
@@ -184,4 +157,4 @@ if (currencySwitcher) {
         });
     }
     }
-}); // Cierre del 'DOMContentLoaded'
+}); 
