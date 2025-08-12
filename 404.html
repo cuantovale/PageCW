@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
-        /* ===== VARIABLES Y ESTILOS BASE (TODO INCLUIDO) ===== */
         :root {
             --primary-color: #7b68ee;
             --primary-color-alt: #6a5acd;
@@ -46,7 +45,6 @@
             color: var(--primary-color);
         }
 
-        /* --- ESTRUCTURA DE PÁGINA --- */
         .page-wrapper {
             display: flex;
             flex-direction: column;
@@ -54,7 +52,7 @@
         }
 
         main {
-            flex-grow: 1; /* Ocupa el espacio sobrante */
+            flex-grow: 1;
         }
 
         .container {
@@ -67,13 +65,12 @@
             padding: 4rem 0;
         }
 
-        /* --- ESTILOS PARA LA PÁGINA 404 --- */
         .error-section {
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            flex-grow: 1; /* Ocupa el espacio disponible en main */
+            flex-grow: 1; 
             padding: 13rem;
             position: relative;
             overflow: hidden;
@@ -170,11 +167,10 @@
             color: #fff;
         }
 
-        /* --- Responsive para la página 404 --- */
         @media (max-width: 768px) {
             .error-section {
                 padding: 1rem;
-                min-height: calc(100vh - 5.5rem); /* Ajustamos la altura para móvil */
+                min-height: calc(100vh - 5.5rem);
             }
 
             .error-card {
@@ -182,7 +178,7 @@
             }
 
             .error-bg-text {
-                font-size: 15vw; /* Reducimos el texto de fondo */
+                font-size: 15vw;
             }
             
             .error-emoji {
