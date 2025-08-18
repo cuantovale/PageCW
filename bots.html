@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clew Bot - Bots Personalizados</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="icon" href="/assets/Logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <meta name="description" content="El mejor bot del mercado. Automatiza, modera y gestiona tu servidor con Clew Bot. Funciones potentes, rendimiento impecable y soporte dedicado 24/7.">
+    <meta name="keywords" content="Clew Bot, Bot de Discord, moderación, automatización, soporte, bot personalizado">
+    <meta name="author" content="Clew Bot">
+
+    <meta property="og:title" content="Clew Bot">
+    <meta property="og:description" content="El mejor bot del mercado. Automatiza, modera y gestiona tu servidor con Clew Bot. Funciones potentes, rendimiento impecable y soporte dedicado 24/7.">
+    <meta property="og:image" content="https://clewbot.space/assets/Logo.png">
+    <meta property="og:url" content="https://clewbot.space/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Clew Bot">
+    <meta name="twitter:description" content="The best bot on the market. Automate, moderate, and engage your server with Clew Bot.">
+    <meta name="twitter:image" content="https://clewbot.space/assets/Logo.png">
+</head>
+<body>
+    
+    <style>
+    .bots-body {
+        color: var(--text-color);
+        font-family: 'Poppins', sans-serif;
+        background-color: #000;
+    }
+
+    #particles-js {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    .bots-header {
+        text-align: center;
+        padding: 4rem 1.5rem 2rem 1.5rem;
+    }
+
+    .bots-header h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        background: linear-gradient(90deg, #FFFFFF, var(--primary-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .bots-header p {
+        font-size: 1.2rem;
+        color: var(--text-color-muted);
+        max-width: 600px;
+        margin: 1rem auto 0 auto;
+    }
+
+    .bot-card {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(30px) saturate(180%);
+        -webkit-backdrop-filter: blur(30px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+
+        border-radius: 1.5rem;
+        padding: 2.5rem;
+        margin-bottom: 4rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .bot-card:hover {
+        transform: translateY(-6px) scale(1.01);
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.45);
+    }
+
+
+    .bot-card > * {
+        position: relative;
+        z-index: 2;
+    }
+
+    .bot-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        border-left: 4px solid var(--primary-color);
+        padding-left: 1rem;
+    }
+
+    .bot-section { margin-bottom: 2rem; }
+    .bot-section h3 { font-size: 1.5rem; font-weight: 600; color: var(--primary-color); margin-bottom: 1rem; }
+    .bot-section ul { list-style: none; padding-left: 0; }
+    .bot-section li, .bot-section p { color: var(--text-color-muted); line-height: 1.7; margin-bottom: 0.75rem; }
+    .bot-section code { background-color: rgba(123, 104, 238, 0.1); color: var(--primary-color); padding: 0.2rem 0.5rem; border-radius: 6px; font-family: monospace; }
+
+    .pricing-tier { background-color: rgba(255, 255, 255, 0.05); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); }
+    .pricing-tier strong { color: #fff; }
+
+    .bot-footer { font-style: italic; color: var(--text-color-muted); margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1rem; }
+    
+    @media (max-width: 768px) {
+        .bots-header h1 { font-size: 2.5rem; }
+        .bot-card { padding: 1.5rem; }
+        .bot-title { font-size: 2rem; }
+    }
+
+
+    .cta-section {
+        padding: 4rem 1.5rem;
+        text-align: center;
+    }
+
+    .cta-card {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 2.5rem;
+        border-radius: 1rem;
+        background-color: var(--surface-color);
+        border: 1px solid var(--glass-border);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+    
+    .cta-card h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 1rem;
+        color: #fff;
+    }
+
+    .cta-card p {
+        color: var(--text-color-muted);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 0.8rem 2rem;
+        background-color: var(--primary-color);
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .cta-button:hover {
+        transform: scale(1.05);
+    }
+</style>
+
+</head>
+<body class="bots-body">
+
+    <div id="particles-js"></div>
+    
+    <div class="page-wrapper">
+
+        <header class="header" id="header">
+            </header>
+
+        <div class="nav__mobile-menu" id="nav-menu">
+            </div>
+
+        <main>
+            <div class="container">
+                <div class="bots-header anim-on-scroll">
+                    <h1>Custom Bots</h1>
+                    <p>Automatizaciones para tu comunidad de discord y para tus mafias/facciones.</p>
+                </div>
+
+                <div class="bot-card anim-on-scroll" style="--delay: 0.2s;">
+                    <h2 class="bot-title">Bot de Control de Mafias</h2>
+                    
+                    <div class="bot-section">
+                        <h3>Comandos</h3>
+                        <ul>
+                            <li><code>/mafia agregar [Nombre] [Licencia]</code> - Agrega un nuevo miembro a la mafia.</li>
+                            <li><code>/mafia sacar [Nombre] o [Licencia]</code> - Saca a un miembro de la mafia por nombre o licencia.</li>
+                            <li><code>/mafia lista</code> - Muestra la lista de todos los miembros de la mafia registrados.</li>
+                            <li><code>/mafia buscar [Nombre] o [Licencia]</code> - Busca a un miembro de la mafia por nombre o licencia.</li>
+                            <li><code>/mafia editar</code> - Edita la información de un miembro existente, sea su nombre o licencia.</li>
+                            <li><code>/mafia historial [Nombre] o [Licencia]</code> - Muestra el historial de retiros y guardados de un miembro de la mafia.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bot-section">
+                        <h3>Funciones</h3>
+                        <ul>
+                            <li>Cada 00:00 hs (ARG) se enviará un resumen diario mostrando los retiros y guardados de todos los miembros de la mafia que lo hicieron.</li>
+                            <li>Al un miembro interactuar con el inventario de mafia, se registra automaticamente su Nombre y Licencia de no estar registrado previamente, aparecerá con su nombre del juego. (Se puede editar su nombre con /mafia editar)</li>
+                            <li>Alerta Anti Robo de Dinero Negro. Envia una alerta si un jugador retira dinero negro y no devuelve la totalidad en 10 segundos. Dando su nombre y licencia en la alerta.</li>
+                            <li>Alerta Anti Robo de Stock. Envia una alerta si un jugador retira ma de 8 items en un lapso de 10 segundos. Dando su nombre y licencia en la alerta.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bot-section">
+                        <h3>Precios</h3>
+                        <div class="pricing-tier">
+                           <p><strong>Permanente sin coste mensual:</strong> 18.000 ARS$ (20 USD)</p>
+                           <p><strong>Permanente con coste mensual:</strong> 11.000 ARS$ (13 USD) > 3.000 ARS$ (3.5 USD) Mensuales</p>
+                           <p><strong>Mensual:</strong> 4.800 ARS$ (5.2 USD) Mensuales</p>
+                           <p><em>Agregaciones de funciones/comandos personalizados tienen un coste mínimo extra.</em></p>
+                        </div>
+                    </div>
+                    <p class="bot-footer">La compra del plan Permanente, quiere decir que por más que tu mafia venza, si sos el Jefe de otra mafia en otro momento, podrá meter el bot nuevamente. Solo si sos el Jefe Oficial.</p>
+                    <p class="bot-footer">Made by .cArpaa</p>
+                </div>
+
+                <div class="bot-card anim-on-scroll" style="--delay: 0.3s;">
+                    <h2 class="bot-title">Bot de Fichajes, Tickets y Más.</h2>
+                    <div class="bot-section">
+                        <h3>Sistema de Fichajes</h3>
+                        <ul>
+                            <li><code>/fichaje on</code> → Abre un fichaje e inicia el registro de tiempo de servicio. Te avisa por MD.</li>
+                            <li><code>/fichaje off</code> → Cierra tu fichaje y guarda el tiempo trabajado. Te avisa por MD.</li>
+                            <li><code>/fichaje ajustar [usuario] [motivo]</code> → Modifica manualmente el tiempo de un fichaje.</li>
+                            <li><code>/fichaje info [usuario]</code> → Consulta las horas trabajadas de un usuario desde el comienzo de la semana.</li>
+                            <li><code>/fichaje horas</code> → Consulta tus propias horas trabajadas desde el comienzo de la semana.</li>
+                            <li><code>/fichaje abiertos</code> → Lista de todos los fichajes abiertos actualmente.</li>
+                            <li><code>/fichaje ranking</code> → Mira el ranking de los usuario mas activos desde el comienzo de la semana.</li>
+                            <li><code>/fichaje cerrar [usuario] [motivo]</code> → Cierra el fichaje a el usuario indicado. Le avisa por MD.</li>
+                        </ul>
+                    </div>
+                    <div class="bot-section">
+                        <h3>Otras Funciones</h3>
+                        <p><strong>Sistema de tickets:</strong> Para reportes, apelaciones, soporte, reclamar recompensas y más.</p>
+                        <p><strong>Sistema de sanciones y apelaciones:</strong> Con el comando <code>/sancionar</code> podrás sancionar a un usuario. El sistema de apelaciones se manejará via tickets automatizados.</p>
+                        <p><strong>Sistema de sugerencias:</strong> El escribir en cierto canal, se enviará una sugerencia en un embed, con sistema de votos.</p>
+                        <p><strong>Sistema de inactividad:</strong> Con el comando <code>/inactividad</code> puedes enviar una solicitud de inactividad para pendiente aprovación.</p>
+                    </div>
+                     <div class="bot-section">
+                        <h3>Precios</h3>
+                        <div class="pricing-tier">
+                           <p><strong>Permanente (Soporte incluído):</strong> 38.000 ARS$ (40 USD)</p>
+                           <p><strong>Permanente (Soporte incluído):</strong> 30.000 ARS$ (32 USD)</p>
+                           <p><strong>Mensual (Con soporte incluído):</strong> 6.200 ARS$ (5.5 USD)</p>
+                           <p><strong>Mensual (Sin soporte incluído):</strong> 5.500 ARS$ (5.5 USD)</p>
+                        </div>
+                    </div>
+                    <p class="bot-footer">Con soporte incluído, quiere decir que el día que quieran agregar/modificar algo podrán pedirme lo que quieran.</p>
+                    <p class="bot-footer">Made by .cArpaa</p>
+                </div>
+
+            </div>
+
+            <section class="payment-methods section">
+        <h2 class="section__title home__title">Metodos de Pago</h2>
+        <div class="payment-methods__grid container">
+            <div class="payment-method__card hover-glass resplandor-hover">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/PayPal_Logo2014.png" alt="PayPal" class="payment-method__logo">
+                <h3 class="payment-method__title">PayPal</h3>
+                <p class="payment-method__desc">Secure payments with PayPal worldwide.</p>
+                <p class="payment-method__availability">Available for USD payments</p>
+            </div>
+            <div class="payment-method__card hover-glass resplandor-hover">
+                <img src="https://cdn.prod.website-files.com/668c4b70310497469407b631/676c0d5cb094bc308544cdef_66d5f0bb02c5689fb7fc456e_logo-mercado-pago-icone-1024-861618780.png" alt="Mercado Pago" class="payment-method__logo">
+                <h3 class="payment-method__title">Mercado Pago</h3>
+                <p class="payment-method__desc">Secure payments with ARS in LATAM.</p>
+                <p class="payment-method__availability">Available for ARS payments</p>
+            </div>
+            <div class="payment-method__card hover-glass resplandor-hover">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/2048px-Bitcoin.svg.png" alt="Cryptocurrency" class="payment-method__logo">
+                <h3 class="payment-method__title">Cryptocurrency</h3>
+                <p class="payment-method__desc">Secure payments with Cryptos worldwide.</p>
+                <p class="payment-method__availability">Available for Crypto payments</p>
+            </div>
+        </div>
+    </section>
+
+            <section class="section section brillo-fondo">
+             <div class="container">
+                <div class="profile-card glass-effect discord-widget-vertical">
+                    <img src="https://cdn.discordapp.com/avatars/576942637731414038/3e30e1ba9c68c9faa71c7f27b5210160.webp?size=1024" alt="Developer" class="profile-card__img">
+                    <h3 class="profile-card__name">.cArpaa</h3>
+                    <p class="profile-card__role">Founder</p>
+                    <div class="profile-card__socials">
+                        <a href="https://discord.com/users/576942637731414038" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        class="social-button discord">
+                            <i class="fab fa-discord"></i>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+            <section class="cta-section">
+    <div class="cta-card glass-effect resplandor-hover">
+        <h3>¿Estás interesado en más bots?</h3>
+        <p>Podés chequear los que tenemos disponibles en la tienda.</p>
+        <a href="pricing.html" class="cta-button">Ver Tienda</a>
+    </div>
+</section>
+        </main>
+
+        <footer class="footer">
+            </footer>
+
+    </div> 
+    
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="js/script.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const botCards = document.querySelectorAll('.bot-card');
+            botCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+
+            if (typeof particlesJS !== 'undefined') {
+                particlesJS('particles-js', {
+                    "particles": {
+                        "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                        "color": { "value": "#ffffff" },
+                        "shape": { "type": "circle" },
+                        "opacity": { "value": 0.5, "random": true },
+                        "size": { "value": 2, "random": true },
+                        "line_linked": { "enable": false },
+                        "move": { "enable": true, "speed": 0.5, "direction": "none", "random": true, "straight": false, "out_mode": "out" }
+                    },
+                    "retina_detect": true
+                });
+            }
+        });
+    </script>
+</body>
+</html>
