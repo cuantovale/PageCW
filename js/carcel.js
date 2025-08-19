@@ -1,5 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     
+    const customReasonModal = document.getElementById('custom-reason-modal');
+    const customReasonInput = document.getElementById('custom-reason-input');
+    const saveCustomReasonBtn = document.getElementById('save-custom-reason-btn');
+
+    let pendingCard = null;
+    let pendingInfraction = null;
+
     const infractions = [
         { title: 'PG', time: 20 }, { title: 'Evadir Rol', time: 40 },
         { title: 'PG Masivo', time: 40 }, { title: 'DM', time: 25 },
@@ -16,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { title: 'Aprovecharse de bugs', time: 70 }, { title: 'Abusar de animaciones para beneficio propio', time: 20 },
         { title: 'Incumplimiento de normativa', time: 20 }, { title: 'Evadir Soporte', time: 40 },
         { title: 'No respetar el tiempo de espera de una zona a la otra', time: 25 },
+        
     ];
 
     let state = { status: 'ONLINE', selectedInfractions: [] };
@@ -95,23 +103,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleCardClick(card, infraction) {
-        const index = state.selectedInfractions.findIndex(item => item.title === infraction.title);
-        
-        if (index > -1) {
-            state.selectedInfractions.splice(index, 1);
-            card.classList.remove('selected');
-        } 
-        else {
-            const currentTotalTime = state.selectedInfractions.reduce((sum, inf) => sum + inf.time, 0);
-            if ((currentTotalTime + infraction.time) > 180) {
-                showCustomAlert('Supera el limite de tiempo de carcel. Tenés que banearlo.', 'Límite Superado');
-                return;
-            }
-            state.selectedInfractions.push(infraction);
-            card.classList.add('selected');
+    const index = state.selectedInfractions.findIndex(item => item.title.startsWith(infraction.title));
+
+    if (index > -1) {
+        state.selectedInfractions.splice(index, 1);
+        card.classList.remove('selected');
+    } else {
+        if (infraction.title === 'Incumplimiento de normativa') {
+            pendingCard = card;
+            pendingInfraction = infraction;
+            customReasonInput.value = '';
+            customReasonModal.classList.add('visible');
+            return;
         }
-        updateSummary();
+
+        const currentTotalTime = state.selectedInfractions.reduce((sum, inf) => sum + inf.time, 0);
+        if ((currentTotalTime + infraction.time) > 180) {
+            showCustomAlert('Supera el limite de tiempo de carcel. Tenés que banearlo.', 'Límite Superado');
+            return;
+        }
+        state.selectedInfractions.push(infraction);
+        card.classList.add('selected');
     }
+    updateSummary();
+}
+
     
     function showCustomAlert(message, title = 'Error') {
         alertTitle.textContent = title;
@@ -198,6 +214,28 @@ document.addEventListener('DOMContentLoaded', () => {
     alertModal.addEventListener('click', (e) => { if (e.target === alertModal) closeAllModals(); });
     
     window.addEventListener('resize', moveSlider);
+
+    saveCustomReasonBtn.addEventListener('click', () => {
+    const detail = customReasonInput.value.trim();
+    if (!detail) {
+        showCustomAlert('Tenés que especificar el incumplimiento.', 'Faltan Datos');
+        return;
+    }
+
+    const customInfraction = {
+        title: `Incumplimiento de normativa (${detail})`,
+        time: pendingInfraction.time
+    };
+
+    state.selectedInfractions.push(customInfraction);
+    pendingCard.classList.add('selected');
+
+    pendingCard = null;
+    pendingInfraction = null;
+    customReasonModal.classList.remove('visible');
+    updateSummary();
+});
+
 
     populateGrid();
     updateStatusUI();
