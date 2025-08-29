@@ -158,8 +158,77 @@
     }
 
     .cta-button:hover {
-        transform: scale(1.05);
+    transform: scale(1.05);
+    background-color: var(--primary-color);
+    color: #fff; 
     }
+
+.tos-popup {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 9999;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(5px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 0.95rem;
+  max-width: 360px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  animation: slideUp 0.6s ease;
+}
+
+.tos-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.tos-content i {
+  font-size: 1.2rem;
+  color: var(--primary-color, #4da6ff);
+  margin-top: 0.15rem;
+}
+
+.tos-content p {
+  margin: 0;
+  line-height: 1.4;
+  color: var(--text-color, #eaeaea);
+}
+
+.tos-content a {
+  color: var(--primary-color, #4da6ff);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.tos-content a:hover {
+  text-decoration: underline;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 1.1rem;
+  margin-left: auto;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #fff;
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; transform: translateY(100%); }
+}
 </style>
 
 </head>
@@ -213,7 +282,7 @@
                         <h3>Precios</h3>
                         <div class="pricing-tier">
                            <p><strong>Permanente sin coste mensual:</strong> 18.000 ARS$ (20 USD)</p>
-                           <p><strong>Permanente con coste mensual:</strong> 11.000 ARS$ (13 USD) > 3.000 ARS$ (3.5 USD) Mensuales</p>
+                           <p><strong>Permanente con coste mensual:</strong> Un pago de 11.000 ARS$ (13 USD) & 3.000 ARS$ (3.5 USD) Mensuales</p>
                            <p><strong>Mensual:</strong> 4.800 ARS$ (5.2 USD) Mensuales</p>
                            <p><em>Agregaciones de funciones/comandos personalizados tienen un coste mínimo extra. No se podrán agregar sistema de tickets/sanciones/fichajes.</em></p>
                         </div>
@@ -306,15 +375,23 @@
           <li><code>/giveaway</code> – Crear un sorteo.</li>
           <li><code>/poll</code> – Crear una encuesta.</li>
         </ul>
-
+        <p class="bot-footer">Made by .cArpaa</p>
       </div>
     </div>
   </div>
 </section>
+</div>
 
-
-
-            </div>
+<section class="cta-section anim-on-scroll" style="--delay: 0.7s;">
+  <div class="cta-card glass-effect hover-glass">
+    <h3>Desarrollo de Bots Personalizados</h3>
+    <p>¿Necesitas un Bot de Discord adaptado a tus necesidades específicas? 
+    Contactame para hablar de tu proyecto.</p>
+    <a href="https://discord.com/users/576942637731414038" target="_blank" class="cta-button">
+      <i class="fab fa-discord"></i> Consultar Proyecto
+    </a>
+  </div>
+</section>
 
             <section class="payment-methods section anim-on-scroll" style="--delay: 0.6s;">
         <h2 class="section__title home__title">Metodos de Pago</h2>
@@ -359,7 +436,18 @@
              </div>
         </section>
 
-        </main>
+<div id="tos-popup" class="tos-popup glass-effect">
+  <div class="tos-content">
+    <i class="fas fa-info-circle"></i>
+    <p>
+      Antes de comprar un bot, debes leer nuestros
+      <a href="tos.html" target="_blank">Términos y Condiciones</a>.
+    </p>
+    <button id="close-tos" class="close-btn">&times;</button>
+  </div>
+</div>
+
+</main>
 
         <footer class="footer">
             </footer>
@@ -400,6 +488,16 @@
                 });
             }
         });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const popup = document.getElementById("tos-popup");
+  const closeBtn = document.getElementById("close-tos");
+
+  closeBtn.addEventListener("click", () => {
+    popup.style.animation = "fadeOut 0.5s ease forwards";
+    setTimeout(() => popup.remove(), 500);
+  });
+});
     </script>
 </body>
 </html>

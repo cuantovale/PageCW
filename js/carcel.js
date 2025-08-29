@@ -8,23 +8,35 @@ document.addEventListener('DOMContentLoaded', () => {
     let pendingInfraction = null;
 
     const infractions = [
-        { title: 'PG', time: 20 }, { title: 'Evadir Rol', time: 40 },
-        { title: 'PG Masivo', time: 40 }, { title: 'DM', time: 25 },
-        { title: 'DM Masivo', time: 35 }, { title: 'VDM', time: 20 },
-        { title: 'VDM Masivo', time: 30 }, { title: 'MG', time: 20 },
-        { title: 'RK', time: 30 }, { title: 'CJ', time: 25 },
-        { title: 'No valorar vida', time: 25 }, { title: 'No respetar rol de entorno', time: 20 },
-        { title: 'Usar arma no debida en ciudad', time: 15 }, { title: 'Forzar rol', time: 25 },
-        { title: 'No respetar el mínimo de integrantes en un robo', time: 20 }, { title: 'No respetar los 3 avisos de tirador', time: 20 },
-        { title: 'Cortar rol', time: 25 }, { title: 'Campear zona', time: 15 },
-        { title: 'Matar a un Staff en reporte', time: 15 }, { title: 'Robar a Trabajo legal', time: 20 },
-        { title: 'Spam del /anon o comandos', time: 30 }, { title: 'Mal uso del /me o /do', time: 10 },
-        { title: 'Mentir en reporte', time: 15 }, { title: 'Mal uso del F5-F6', time: 25 },
-        { title: 'Aprovecharse de bugs', time: 70 }, { title: 'Abusar de animaciones para beneficio propio', time: 20 },
-        { title: 'Incumplimiento de normativa', time: 20 }, { title: 'Evadir Soporte', time: 40 },
-        { title: 'No respetar el tiempo de espera de una zona a la otra', time: 25 },
-        
-    ];
+    { title: 'PG', time: 15 },
+    { title: 'PG Masivo', time: 30 },
+    { title: 'DM', time: 20 },
+    { title: 'DM Masivo', time: 35 },
+    { title: 'VDM', time: 20 },
+    { title: 'VDM Masivo', time: 35 },
+    { title: 'MG', time: 15 },
+    { title: 'RK', time: 15 },
+    { title: 'CJ', time: 10 },
+    { title: 'NRE', time: 20 }, 
+    { title: 'BA (Bug Abusse)', time: 20 },
+    { title: 'Incumplimiento de normativa', time: 20 },
+    { title: 'No valorar vida', time: 20 },
+    { title: 'Evadir Rol', time: 15 },
+    { title: 'Forzar rol', time: 20 },
+    { title: 'Cortar rol', time: 15 },
+    { title: 'Mentir en reporte', time: 15 },
+    { title: 'Evadir Soporte', time: 20 },
+    { title: 'Campear zona', time: 25 },
+    { title: 'No respetar el tiempo de espera de una zona a la otra', time: 15 },
+    { title: 'Mal uso del /me o /do', time: 10 },
+    { title: 'Spam del /anon o comandos', time: 10 },
+    { title: 'Mal uso del F5 - F6', time: 15 },
+    { title: 'No respetar el mínimo de integrantes en un robo', time: 10 },
+    { title: 'Robar a Trabajo legal', time: 20 },
+    { title: 'Usar arma no debida en ciudad', time: 15 },
+    { title: 'No respetar los 3 avisos de tirador', time: 20 },
+];
+
 
     let state = { status: 'ONLINE', selectedInfractions: [] };
     let limitAlertShown = false;
@@ -119,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const currentTotalTime = state.selectedInfractions.reduce((sum, inf) => sum + inf.time, 0);
         if ((currentTotalTime + infraction.time) > 180) {
-            showCustomAlert('Supera el limite de tiempo de carcel. Tenés que banearlo.', 'Límite Superado');
+            showCustomAlert('Supera el limite de tiempo de carcel. Tenés que banearlo 1 día.', 'Límite Superado');
             return;
         }
         state.selectedInfractions.push(infraction);
