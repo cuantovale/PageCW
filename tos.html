@@ -97,7 +97,12 @@
       border-radius: 10px;
       transition: transform .25s ease;
     }
-    .btn:hover { transform: scale(1.05); }
+    .btn:hover {
+    transform: scale(1.05);
+    background-color: var(--primary-color);
+    color: #fff; 
+    }
+
     .muted { color: var(--text-color-muted); font-size: .95rem; }
     @media (max-width: 768px){
       .tos-header h1 { font-size: 2.3rem; }
@@ -129,7 +134,7 @@
 
     <section class="tos-card anim-on-scroll" style="--delay:.35s">
       <h2>3. Soporte y Mantenimiento</h2>
-      <p>El Soporte se brinda conforme al plan adquirido. Cambios o nuevas funciones fuera del alcance original pueden presupuestarse con un <strong>precio extra.</strong></p>
+      <p>El Soporte se brinda conforme al plan adquirido. Cambios o nuevas funciones fuera del alcance original pueden presupuestarse con un <strong>precio extra.</strong> Se podrá agregar lo que deseen, excluyendo algún sistema de otro bot a la venta.</p>
     </section>
 
     <section class="tos-card anim-on-scroll" style="--delay:.4s">
@@ -153,7 +158,7 @@
       <p class="muted">Última actualización: <span id="last-updated">—</span></p>
     </section>
 
-    <div class="tos-cta anim-on-scroll" style="--delay:.75s">
+    <div class="tos-cta anim-on-scroll" style="--delay:0.15s">
       <a href="bots.html" class="btn"><i class="fas fa-arrow-left" style="margin-right:.5rem"></i>Volver a la Tienda</a>
     </div>
   </main>

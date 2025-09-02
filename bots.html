@@ -229,6 +229,13 @@
 @keyframes fadeOut {
   to { opacity: 0; transform: translateY(100%); }
 }
+
+#discount-popup {
+  z-index: 10000;
+  bottom: 100px;
+  left: 20px;
+}
+
 </style>
 
 </head>
@@ -317,13 +324,12 @@
                      <div class="bot-section">
                         <h3>Precios</h3>
                         <div class="pricing-tier">
-                           <p><strong>Permanente (Soporte incluído):</strong> 38.000 ARS$ (40 USD)</p>
-                           <p><strong>Permanente (Soporte incluído):</strong> 30.000 ARS$ (32 USD)</p>
+                           <p><strong>Permanente (Soporte incluído):</strong> 32.000 ARS$ (40 USD)</p>
+                           <p><strong>Permanente (Sin soporte incluído):</strong> 24.000 ARS$ (32 USD)</p>
                            <p><strong>Mensual (Con soporte incluído):</strong> 6.200 ARS$ (5.5 USD)</p>
                            <p><strong>Mensual (Sin soporte incluído):</strong> 5.500 ARS$ (5.5 USD)</p>
                         </div>
                     </div>
-                    <p class="bot-footer">Con soporte incluído, quiere decir que el día que quieran agregar/modificar algo podrán pedirme lo que quieran.</p>
                     <p class="bot-footer">Made by .cArpaa</p>
                 </div>
 
@@ -375,6 +381,15 @@
           <li><code>/giveaway</code> – Crear un sorteo.</li>
           <li><code>/poll</code> – Crear una encuesta.</li>
         </ul>
+        <div class="bot-section">
+                        <h3>Precios</h3>
+                        <div class="pricing-tier">
+                           <p><strong>Permanente (Soporte incluído):</strong> 38.000 ARS$ (40 USD)</p>
+                           <p><strong>Permanente (Sin soporte incluído):</strong> 28.000 ARS$ (30 USD)</p>
+                           <p><strong>Mensual (Con soporte incluído):</strong> 5.300 ARS$ (5.5 USD)</p>
+                           <p><strong>Mensual (Sin soporte incluído):</strong> 4.500 ARS$ (5.5 USD)</p>
+                        </div>
+                    </div>
         <p class="bot-footer">Made by .cArpaa</p>
       </div>
     </div>
@@ -436,6 +451,17 @@
              </div>
         </section>
 
+<div id="discount-popup" class="tos-popup glass-effect">
+  <div class="tos-content">
+    <i class="fas fa-percent"></i>
+    <p>
+      🎉 En la compra de <strong>2 o más bots</strong>, obtienes un 
+      <strong>15% de descuento</strong> en los bots adquiridos.
+    </p>
+    <button id="close-discount" class="close-btn">&times;</button>
+  </div>
+</div>
+
 <div id="tos-popup" class="tos-popup glass-effect">
   <div class="tos-content">
     <i class="fas fa-info-circle"></i>
@@ -489,15 +515,28 @@
             }
         });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const popup = document.getElementById("tos-popup");
-  const closeBtn = document.getElementById("close-tos");
+        document.addEventListener("DOMContentLoaded", () => {
+        const popup = document.getElementById("tos-popup");
+        const closeBtn = document.getElementById("close-tos");
 
-  closeBtn.addEventListener("click", () => {
-    popup.style.animation = "fadeOut 0.5s ease forwards";
-    setTimeout(() => popup.remove(), 500);
-  });
-});
+        closeBtn.addEventListener("click", () => {
+            popup.style.animation = "fadeOut 0.5s ease forwards";
+            setTimeout(() => popup.remove(), 500);
+        });
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+        const discountPopup = document.getElementById("discount-popup");
+        const closeDiscountBtn = document.getElementById("close-discount");
+
+        if (closeDiscountBtn) {
+            closeDiscountBtn.addEventListener("click", () => {
+            discountPopup.style.animation = "fadeOut 0.5s ease forwards";
+            setTimeout(() => discountPopup.remove(), 500);
+            });
+        }
+        });
+
     </script>
 </body>
 </html>
