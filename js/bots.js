@@ -1,34 +1,33 @@
 document.addEventListener('DOMContentLoaded', function() {
-            const botCards = document.querySelectorAll('.bot-card');
-            botCards.forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    card.style.setProperty('--mouse-x', `${x}px`);
-                    card.style.setProperty('--mouse-y', `${y}px`);
-                });
-            });
+    // Efecto de brillo en tarjetas
+    const interactiveCards = document.querySelectorAll('.bot-card, .discord-widget-vertical');
+    interactiveCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
         });
+    });
 
-        document.addEventListener("DOMContentLoaded", () => {
-        const popup = document.getElementById("tos-popup");
-        const closeBtn = document.getElementById("close-tos");
+    // Lógica para cerrar los popups con animación
+    const popupsToHandle = [
+        { popupId: 'tos-popup', closeId: 'close-tos' },
+        { popupId: 'discount-popup', closeId: 'close-discount' }
+    ];
 
-        closeBtn.addEventListener("click", () => {
-            popup.style.animation = "fadeOut 0.5s ease forwards";
-            setTimeout(() => popup.remove(), 500);
-        });
-        });
+    popupsToHandle.forEach(({ popupId, closeId }) => {
+        const popupElement = document.getElementById(popupId);
+        const closeBtn = document.getElementById(closeId);
 
-        document.addEventListener("DOMContentLoaded", () => {
-        const discountPopup = document.getElementById("discount-popup");
-        const closeDiscountBtn = document.getElementById("close-discount");
-
-        if (closeDiscountBtn) {
-            closeDiscountBtn.addEventListener("click", () => {
-            discountPopup.style.animation = "fadeOut 0.5s ease forwards";
-            setTimeout(() => discountPopup.remove(), 500);
+        if (popupElement && closeBtn) {
+            closeBtn.addEventListener("click", () => {
+                // 1. Añadimos una clase para iniciar la animación de colapso
+                popupElement.classList.add('closing');
+                // 2. Escuchamos a que la transición CSS termine para eliminar el elemento
+                popupElement.addEventListener('transitionend', () => popupElement.remove(), { once: true });
             });
         }
-        });
+    });
+});

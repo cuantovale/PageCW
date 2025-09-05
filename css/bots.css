@@ -132,11 +132,18 @@
     color: #fff; 
     }
 
-.tos-popup {
+.popup-container {
   position: fixed;
   bottom: 20px;
   left: 20px;
   z-index: 9999;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 1rem;
+}
+
+.tos-popup {
+  position: relative;
   padding: 0.8rem 1rem;
   border-radius: 12px;
   background: rgba(20, 20, 20, 0.6);
@@ -146,8 +153,22 @@
   font-size: 0.95rem;
   max-width: 360px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-  animation: slideUp 0.6s ease;
+  animation: slideUp 0.6s ease-out;
+  /* Propiedades para la animación de cierre */
+  overflow: hidden;
+  max-height: 150px; /* Un valor seguro, más alto que el popup */
+  transition: all 0.5s ease-out;
 }
+
+.tos-popup.closing {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 0;
+  opacity: 0;
+  border-width: 0;
+}
+
 
 .tos-content {
   display: flex;
@@ -195,10 +216,6 @@
   to { transform: translateY(0); opacity: 1; }
 }
 
-@keyframes fadeOut {
-  to { opacity: 0; transform: translateY(100%); }
-}
-
 .background-video {
     position: fixed; /* fijo en la ventana, no se mueve al hacer scroll */
     top: 50%;
@@ -214,7 +231,5 @@
 
 
 #discount-popup {
-  z-index: 10000;
-  bottom: 100px;
-  left: 20px;
+  /* Ya no se necesitan estilos de posicionamiento específicos aquí. */
 }
