@@ -30,4 +30,19 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
+
+    // Lógica para animaciones de aparición al hacer scroll
+    const animationObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // Cuando el elemento entra en la vista, se añade la clase para la animación.
+            // Cuando sale, se quita para que la animación pueda repetirse.
+            entry.target.classList.toggle('is-visible', entry.isIntersecting);
+        });
+    }, {
+        threshold: 0.1 // La animación se activa cuando al menos un 10% del elemento es visible.
+    });
+
+    // Aplicar el observador a todos los elementos que queremos animar.
+    const elementsToAnimate = document.querySelectorAll('.anim-on-scroll');
+    elementsToAnimate.forEach(element => animationObserver.observe(element));
 });
