@@ -41,9 +41,9 @@ body::-webkit-scrollbar-thumb {
 .header {
   background: var(--color-bg-header);
   /* --- Banner de Fondo --- */
-  /* Reemplaza '/images/banner.jpg' con la ruta a tu imagen. */
+  /* Reemplaza '/italia/images/banner.jpg' con la ruta a tu imagen. */
   /* El linear-gradient crea una capa oscura para que el texto sea legible. */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/images/banner.png');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/italia/images/banner.png');
   background-size: cover;
   background-position: center;
   /* --- Fin Banner --- */
