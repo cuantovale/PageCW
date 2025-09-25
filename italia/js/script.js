@@ -217,8 +217,8 @@ const MENU_DATA = [
     categoria: "Especialidades",
     productos: [
       {
-        nombre: "Sandwich Génova (pan de molde casero, J&Q y huevo revuelto)",
-        descripcion: "",
+        nombre: "Sandwich Génova",
+        descripcion: "Pan de Molde Casero, Jamón, Queso y Huevo Revuelto)",
         precio: 7600,
         img: "/italia/images/default.svg"
       },
@@ -229,8 +229,8 @@ const MENU_DATA = [
         img: "/italia/images/default.svg"
       },
       {
-        nombre: "Brusqueta Sicilia (pan de campo, Q crema con cebollita de verdeo, cerdo ahumado, rúcula y tomate)",
-        descripcion: "",
+        nombre: "Brusqueta Sicilia",
+        descripcion: "Pan de Campo, Queso Crema con Cebollita de Verdeo, Cerdo Ahumado, Rúcula y Tomate)",
         precio: 6500,
         img: "/italia/images/default.svg"
       },
@@ -241,8 +241,8 @@ const MENU_DATA = [
         img: "/italia/images/default.svg"
       },
       {
-        nombre: "Brusqueta Turín (pan de campo, Q crema, palta, tomate y huevo revuelto)",
-        descripcion: "",
+        nombre: "Brusqueta Turín",
+        descripcion: "Pan de Campo, Queso Cremama, Palta, Tomate y Huevo Revuelto)",
         precio: 7600,
         img: "/italia/images/default.svg"
       },
@@ -253,8 +253,8 @@ const MENU_DATA = [
         img: "/italia/images/default.svg"
       },
       {
-        nombre: "Brusqueta Capri (pan de campo, Q crema, frutas de estación y miel)",
-        descripcion: "",
+        nombre: "Brusqueta Capri",
+        descripcion: "Pan de Campo, Queso Crema, Frutas de Estación y Miel)",
         precio: 6000,
         img: "/italia/images/default.svg"
       },
@@ -265,8 +265,8 @@ const MENU_DATA = [
         img: "/italia/images/default.svg"
       },
       {
-        nombre: "Brusqueta Siena (pan de campo, crema de nuestro cheesecake con reducción de frutos rojos)",
-        descripcion: "",
+        nombre: "Brusqueta Siena",
+        descripcion: "Pan de campo, Crema de nuestro Cheesecake con Reducción de Frutos Rojos",
         precio: 5700,
         img: "/italia/images/default.svg"
       },
@@ -277,8 +277,8 @@ const MENU_DATA = [
         img: "/italia/images/default.svg"
       },
       {
-        nombre: "Pancakes Roma (2 panqueques tibios con miel, salsa y frutas de estación)",
-        descripcion: "",
+        nombre: "Pancakes Roma",
+        descripcion: "2 Panqueques Tibios con Miel, Salsa y Frutas de Estación)",
         precio: 6700,
         img: "/italia/images/default.svg"
       },
@@ -371,36 +371,6 @@ const MENU_DATA = [
         precio: 2700,
         img: "/italia/images/default.svg"
       },
-      {
-        nombre: "Energizante",
-        descripcion: "",
-        precio: null,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Cerveza regular 330 ml",
-        descripcion: "",
-        precio: 3800,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Cerveza regular 600 ml",
-        descripcion: "",
-        precio: 5400,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Cerveza premium 330 ml",
-        descripcion: "",
-        precio: 4300,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Cerveza premium sin alcohol 330 ml",
-        descripcion: "",
-        precio: 4300,
-        img: "/italia/images/default.svg"
-      },
     ],
   },
   {
@@ -454,13 +424,13 @@ const MENU_DATA = [
     categoria: "Dulces",
     productos: [
       {
-        nombre: "Medialunas / Facturas",
+        nombre: "Medialunas",
         descripcion: "",
         precio: 1600,
         img: "/italia/images/default.svg"
       },
       {
-        nombre: "Pepas (porción)",
+        nombre: "Porción de Pepas",
         descripcion: "",
         precio: 3500,
         img: "/italia/images/default.svg"
@@ -679,8 +649,8 @@ const MENU_DATA = [
         img: "/italia/images/default.svg"
       },
       {
-        nombre: "Mbejú Italia (masa + 3 ingredientes a elección)",
-        descripcion: "",
+        nombre: "Mbejú Italia",
+        descripcion: "Masa de Mbejú + 3 Ingredientes a Elección)",
         precio: 10500,
         img: "/italia/images/default.svg"
       },
