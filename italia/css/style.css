@@ -456,54 +456,83 @@ body::-webkit-scrollbar-thumb {
 
 .category-bar {
   background: #fff;
-  padding: 8px 10px;
-  display: flex;
-  gap: 8px;
+  padding: 12px 10px;
+  display: flex;  
+  gap: 50px;
   justify-content: flex-start; /* Alinea los botones al inicio para evitar cortes en móvil */
   overflow-x: auto; /* Permite scroll horizontal si los botones no caben */
   white-space: nowrap; /* Evita que los botones salten de línea */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.20); /* Sombra inferior */
+  /* Sombra sutil para dar profundidad */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
+  /* Ocultar la barra de scroll */
+  scrollbar-width: none; /* Para Firefox */
 }
+
 
 .category-bar::-webkit-scrollbar {
-  height: 8px;
-}
-
-.category-bar::-webkit-scrollbar-thumb {
-  background: transparent; /* Oculto por defecto */
-  border-radius: 20px;
-  transition: background 0.2s ease-in-out;
-}
-
-.category-bar:hover::-webkit-scrollbar-thumb {
-  background: var(--color-bg-category-active); /* Visible al pasar el mouse */
+  display: none; /* Para Chrome, Safari y Opera */
 }
 
 .category {
+  /* Estructura del botón */
   flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  
+  /* Apariencia */
+  background: transparent;
   border: none;
-  padding: 8px 16px;
-  font-weight: 600;
-  font-size: 0.85rem;
-  border-radius: 24px;
-  background: var(--color-bg-category);
-  color: var(--color-text-category);
   cursor: pointer;
-  white-space: nowrap;
-  transition: background-color 0.3s ease, color 0.3s ease;
   user-select: none;
+  padding: 0;
+  width: 80px; /* Ancho fijo para cada botón */
 }
 
-.category:hover,
-.category:focus-visible {
-  background: var(--color-bg-category-active);
-  color: var(--color-text-category-active);
-  outline-offset: 2px;
+.category-icon-wrapper {
+  /* El círculo */
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #f8f6f1; /* Un beige claro y suave */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.category-active {
-  background: var(--color-bg-category-active);
-  color: var(--color-text-category-active);
+.category-icon-wrapper img {
+  /* La imagen dentro del círculo */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegura que la imagen cubra el círculo */
+  border-radius: 50%; /* Mantiene la forma circular */
+  pointer-events: none; /* Evita que la imagen reciba clics o eventos del mouse */
+}
+
+.category-text {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #555;
+  transition: color 0.2s ease;
+}
+
+/* --- Estados Activo y Hover --- */
+.category:hover .category-icon-wrapper,
+.category:focus-visible .category-icon-wrapper {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 12px rgba(48, 77, 58, 0.2);
+}
+
+.category.category-active .category-icon-wrapper {
+  background-color: var(--color-price); /* Fondo verde */
+  box-shadow: 0 4px 10px rgba(48, 77, 58, 0.3);
+}
+
+.category.category-active .category-text {
+  color: var(--color-price); /* Texto verde oscuro */
 }
 
 .menu-container {

@@ -294,6 +294,12 @@ const MENU_DATA = [
         img: "/italia/images/default.svg"
       },
       {
+        nombre: "Jarra de limonada (2lts)",
+        descripcion: "",
+        precio: 11500,
+        img: "/italia/images/default.svg"
+      },
+      {
         nombre: "Jugo de naranja grande",
         descripcion: "",
         precio: 4300,
@@ -680,83 +686,6 @@ const MENU_DATA = [
       },
     ],
   },
-  {
-    categoria: "After Office",
-    productos: [
-      {
-        nombre: "Fernet con coca",
-        descripcion: "",
-        precio: 5000,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Campari con jugo de naranja",
-        descripcion: "",
-        precio: 4500,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Jarra de limonada (2lts)",
-        descripcion: "",
-        precio: 11500,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Crep jamón crudo rúcula queso crema",
-        descripcion: "",
-        precio: 4600,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Crep cerdo ahumado rúcula tomate queso crema",
-        descripcion: "",
-        precio: 4600,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Crep jamón queso lechuga tomate queso crema",
-        descripcion: "",
-        precio: 4600,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Pizzeta jamón y morrones",
-        descripcion: "",
-        precio: 9000,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Pizzeta Provolone",
-        descripcion: "",
-        precio: 9000,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Pizzeta rúcula y jamón crudo",
-        descripcion: "",
-        precio: 10000,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Pizzeta muzzarela",
-        descripcion: "",
-        precio: 8000,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Brownie con helado",
-        descripcion: "",
-        precio: 4500,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Vaso helado (3 bochas con salsa y garrapiñada)",
-        descripcion: "",
-        precio: 3500,
-        img: "/italia/images/default.svg"
-      },
-    ],
-  },
 ];
 
 // Función para formatear precio a moneda local (ARS)
@@ -956,7 +885,8 @@ function createScrollspy() {
 
 function updateActiveCategory(categoryName) {
   categoryButtons.forEach((btn) => {
-    if (btn.textContent.trim() === categoryName) {
+    const btnCategoryName = btn.dataset.categoryName;
+    if (btnCategoryName === categoryName) {
       btn.classList.add("category-active");
       btn.setAttribute("aria-pressed", "true");
       // Scroll suave de la barra de categorías para mostrar el botón activo
@@ -1024,8 +954,10 @@ document.addEventListener("keydown", (e) => {
 // Manejo categorías
 const categoryButtons = document.querySelectorAll(".category-bar .category");
 categoryButtons.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    const categoryName = e.target.textContent.trim();
+  btn.addEventListener("click", () => {
+    const categoryName = btn.dataset.categoryName;
+    if (!categoryName) return; // Guard clause if text is somehow missing or not found
+
     const sectionId = categoryName.replace(/\s+/g, "-").toLowerCase();
     const sectionElement = document.getElementById(sectionId);
     if (sectionElement) {
@@ -1046,8 +978,8 @@ document.addEventListener("DOMContentLoaded", () => {
   renderAllProducts();
   document.getElementById("search-input").addEventListener("input", filterProducts);
   window.addEventListener("scroll", handleScroll, { passive: true });
-  createScrollspy();
-  updateActiveCategory(categoryButtons[0].textContent.trim()); // Activa la primera categoría al cargar
+  createScrollspy(); // This will handle initial activation
+  // Removed: updateActiveCategory(categoryButtons[0].querySelector('.category-text').textContent.trim()); // Activa la primera categoría al cargar
 
   // --- Inicialización de Lenis (Smooth Scroll) ---
   lenis = new Lenis({
