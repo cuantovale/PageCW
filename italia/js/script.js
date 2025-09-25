@@ -285,118 +285,6 @@ const MENU_DATA = [
     ],
   },
   {
-    categoria: "Combos",
-    productos: [
-      {
-        nombre: "Clásico",
-        descripcion: "",
-        precio: 7000,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Chipá",
-        descripcion: "",
-        precio: 6900,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Proteico",
-        descripcion: "",
-        precio: 13000,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Fit",
-        descripcion: "",
-        precio: 10800,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Italia",
-        descripcion: "",
-        precio: 12400,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Mbejú",
-        descripcion: "",
-        precio: 11300,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Para dos",
-        descripcion: "",
-        precio: 23700,
-        img: "/italia/images/default.svg"
-      },
-    ],
-  },
-  {
-    categoria: "Dulces",
-    productos: [
-      {
-        nombre: "Medialunas / Facturas",
-        descripcion: "",
-        precio: 1600,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Pepas (porción)",
-        descripcion: "",
-        precio: 3500,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Tostadas pan casero con 2 dips",
-        descripcion: "",
-        precio: 6000,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Alfajores de la casa (2 unidades)",
-        descripcion: "",
-        precio: 3300,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Porción de Cheesecake",
-        descripcion: "",
-        precio: 7500,
-        img: "/italia/images/cheescake.png"
-      },
-      {
-        nombre: "Porción de tarta",
-        descripcion: "",
-        precio: 6500,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Pastafrola",
-        descripcion: "",
-        precio: 5400,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Bowl frutas estación, coco y miel",
-        descripcion: "",
-        precio: 6500,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Waffles con miel o salsa",
-        descripcion: "",
-        precio: 4300,
-        img: "/italia/images/default.svg"
-      },
-      {
-        nombre: "Waffles con frutas o helado",
-        descripcion: "",
-        precio: 6700,
-        img: "/italia/images/default.svg"
-      },
-    ],
-  },
-  {
     categoria: "Bebidas",
     productos: [
       {
@@ -505,6 +393,118 @@ const MENU_DATA = [
         nombre: "Cerveza premium sin alcohol 330 ml",
         descripcion: "",
         precio: 4300,
+        img: "/italia/images/default.svg"
+      },
+    ],
+  },
+  {
+    categoria: "Combos",
+    productos: [
+      {
+        nombre: "Clásico",
+        descripcion: "",
+        precio: 7000,
+        img: "/italia/images/default.svg"
+      },
+      {
+        nombre: "Chipá",
+        descripcion: "",
+        precio: 6900,
+        img: "/italia/images/default.svg"
+      },
+      {
+        nombre: "Proteico",
+        descripcion: "",
+        precio: 13000,
+        img: "/italia/images/default.svg"
+      },
+      {
+        nombre: "Fit",
+        descripcion: "",
+        precio: 10800,
+        img: "/italia/images/default.svg"
+      },
+      {
+        nombre: "Italia",
+        descripcion: "",
+        precio: 12400,
+        img: "/italia/images/default.svg"
+      },
+      {
+        nombre: "Mbejú",
+        descripcion: "",
+        precio: 11300,
+        img: "/italia/images/default.svg"
+      },
+      {
+        nombre: "Para dos",
+        descripcion: "",
+        precio: 23700,
+        img: "/italia/images/default.svg"
+      },
+    ],
+  },
+  {
+    categoria: "Dulces",
+    productos: [
+      {
+        nombre: "Medialunas / Facturas",
+        descripcion: "",
+        precio: 1600,
+        img: "/italia/images/default.svg"
+      },
+      {
+        nombre: "Pepas (porción)",
+        descripcion: "",
+        precio: 3500,
+        img: "/italia/images/default.svg"
+      },
+      {
+        nombre: "Tostadas pan casero con 2 dips",
+        descripcion: "",
+        precio: 6000,
+        img: "/italia/images/default.svg"
+      },
+      {
+        nombre: "Alfajores de la casa (2 unidades)",
+        descripcion: "",
+        precio: 3300,
+        img: "/italia/images/default.svg"
+      },
+      {
+        nombre: "Porción de Cheesecake",
+        descripcion: "",
+        precio: 7500,
+        img: "/italia/images/cheescake.png"
+      },
+      {
+        nombre: "Porción de tarta",
+        descripcion: "",
+        precio: 6500,
+        img: "/italia/images/default.svg"
+      },
+      {
+        nombre: "Pastafrola",
+        descripcion: "",
+        precio: 5400,
+        img: "/italia/images/default.svg"
+      },
+      {
+        nombre: "Bowl frutas estación, coco y miel",
+        descripcion: "",
+        precio: 6500,
+        img: "/italia/images/default.svg"
+      },
+      {
+        nombre: "Waffles con miel o salsa",
+        descripcion: "",
+        precio: 4300,
+        img: "/italia/images/default.svg"
+      },
+      {
+        nombre: "Waffles con frutas o helado",
+        descripcion: "",
+        precio: 6700,
         img: "/italia/images/default.svg"
       },
     ],
