@@ -815,3 +815,31 @@ body::-webkit-scrollbar-thumb {
     height: 70px;
   }
 }
+
+/* --- Estilos para el botón de Volver Arriba --- */
+.scroll-up {
+  position: fixed;
+  right: 24px;
+  bottom: -50%; /* Oculto por defecto */
+  background-color: var(--color-price);
+  color: #fff;
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  z-index: 200;
+  transition: bottom 0.4s ease, transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+}
+
+.scroll-up:hover {
+  transform: translateY(-4px);
+}
+
+/* Clase para mostrar el botón */
+.show-scroll {
+  bottom: 40px;
+}

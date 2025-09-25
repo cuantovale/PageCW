@@ -1202,4 +1202,22 @@ document.addEventListener("DOMContentLoaded", () => {
   // Comprobar el estado al cargar la página y luego cada minuto
   checkOpenStatus();
   setInterval(checkOpenStatus, 60000); // 60000 ms = 1 minuto
+
+  // --- Lógica para el botón de Volver Arriba ---
+  const scrollUpBtn = document.getElementById("scroll-up");
+
+  function toggleScrollUpButton() {
+    if (window.scrollY >= 350) {
+      scrollUpBtn.classList.add("show-scroll");
+    } else {
+      scrollUpBtn.classList.remove("show-scroll");
+    }
+  }
+
+  window.addEventListener("scroll", toggleScrollUpButton);
+
+  scrollUpBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    lenis.scrollTo(0); // Usamos Lenis para un scroll suave
+  });
 });
