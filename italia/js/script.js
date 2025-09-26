@@ -650,7 +650,7 @@ const MENU_DATA = [
       },
       {
         nombre: "Mbejú Italia",
-        descripcion: "Masa de Mbejú + 3 Ingredientes a Elección)",
+        descripcion: "Masa de Mbejú + 3 Ingredientes a Elección",
         precio: 10500,
         img: "/italia/images/productos/default.svg"
       },
