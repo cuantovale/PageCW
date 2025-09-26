@@ -658,7 +658,6 @@ const MENU_DATA = [
   },
 ];
 
-// Función para formatear precio a moneda local (ARS)
 function formatPrice(num) {
   if (num === null || num === undefined) return "";
   return new Intl.NumberFormat("es-AR", {
@@ -668,7 +667,6 @@ function formatPrice(num) {
   }).format(num);
 }
 
-// Función para crear un elemento DOM con clases y atributos
 function createElement(type, options = {}) {
   const el = document.createElement(type);
   if (options.className) el.className = options.className;
@@ -680,13 +678,11 @@ function createElement(type, options = {}) {
   return el;
 }
 
-// Renderiza TODOS los productos, agrupados por categoría
 function renderAllProducts() {
   const container = document.getElementById("menu-container");
   container.innerHTML = "";
 
   MENU_DATA.forEach((catData) => {
-    // Omitir la categoría de advertencia TACC si no tiene productos
     if (catData.categoria.includes("Nuestra Cocina") && catData.productos.length === 0) {
       const note = createElement("section", { className: "menu-section" });
       const title = createElement("h2", {
@@ -694,7 +690,7 @@ function renderAllProducts() {
       });
       note.appendChild(title);
       container.appendChild(note);
-      return; // Continuar con la siguiente categoría
+      return;
     }
 
     if (catData.productos.length === 0) return;
@@ -704,7 +700,6 @@ function renderAllProducts() {
   });
 }
 
-// Función auxiliar para crear una sección de productos
 function createProductSection(catData) {
   const sectionId = catData.categoria.replace(/\s+/g, "-").toLowerCase();
   const section = createElement("section", {
@@ -722,11 +717,9 @@ function createProductSection(catData) {
   return section;
 }
 
-// Función auxiliar para crear un item de producto
 function createProductItem({ nombre, descripcion, precio, img }) {
   const item = createElement("article", { className: "menu-item" });
 
-  // Info
   const info = createElement("div", { className: "product-info" });
   const nameEl = createElement("h3", { className: "product-name", text: nombre });
   info.appendChild(nameEl);
@@ -740,18 +733,15 @@ function createProductItem({ nombre, descripcion, precio, img }) {
   }
   item.appendChild(info);
 
-  // Imagen
   const imgContainer = createElement("div", {
     className: "product-img-container",
     attrs: { tabindex: "0", role: "button", "aria-label": `Ver imagen del producto ${nombre}` },
   });
 
-  // Si imagen es /italia/images/productos/default.svg, no se agranda (nozoom)
   if (img === "/italia/images/productos/default.svg") {
     imgContainer.classList.add("nozoom");
   }
 
-  // Imagen dentro
   const imgEl = createElement("img", {
     className: "product-img",
     attrs: {
@@ -767,7 +757,6 @@ function createProductItem({ nombre, descripcion, precio, img }) {
   imgContainer.appendChild(imgEl);
   item.appendChild(imgContainer);
 
-  // Zoom imagen al click excepto /italia/images/productos/default.svg
   if (img !== "/italia/images/productos/default.svg") {
     imgContainer.addEventListener("click", () => openLightbox(img, nombre));
     imgContainer.addEventListener("keydown", (e) => {
@@ -781,16 +770,14 @@ function createProductItem({ nombre, descripcion, precio, img }) {
   return item;
 }
 
-// --- Función para normalizar texto (quitar acentos y a minúsculas) ---
 function normalizeText(text) {
   if (!text) return "";
   return text
     .toLowerCase()
-    .normalize("NFD") // Separa los caracteres base de los diacríticos (acentos)
-    .replace(/[\u0300-\u036f]/g, ""); // Elimina los diacríticos
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
 }
 
-// --- Lógica de Búsqueda ---
 function filterProducts() {
   const searchTerm = normalizeText(document.getElementById("search-input").value);
   const sections = document.querySelectorAll(".menu-section");
@@ -807,12 +794,10 @@ function filterProducts() {
       if (isVisible) sectionHasVisibleItems = true;
     });
 
-    // Ocultar título de la sección si no tiene items visibles
     section.style.display = sectionHasVisibleItems ? "" : "none";
   });
 }
 
-// --- Lógica de Scroll ---
 let lastScrollY = window.scrollY;
 
 function handleScroll() {
@@ -820,15 +805,14 @@ function handleScroll() {
   const categoryBar = stickyControls.querySelector(".category-bar");
   const currentScrollY = window.scrollY;
 
-  // Ocultar barra de categorías en móvil al hacer scroll hacia abajo
   if (window.innerWidth <= 768) {
     if (currentScrollY > lastScrollY && currentScrollY > stickyControls.offsetTop + 50) {
-      categoryBar.classList.add("hidden-on-scroll"); // Ocultar
+      categoryBar.classList.add("hidden-on-scroll");
     } else {
-      categoryBar.classList.remove("hidden-on-scroll"); // Mostrar
+      categoryBar.classList.remove("hidden-on-scroll");
     }
   }
-  lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY; // Evita valores negativos en iOS
+  lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
 }
 
 // --- Lógica de Scrollspy (Intersection Observer) ---
@@ -843,7 +827,7 @@ function createScrollspy() {
         }
       });
     },
-    { rootMargin: "-40% 0px -60% 0px" } // Activa cuando la sección está en el medio
+    { rootMargin: "-40% 0px -60% 0px" }
   );
 
   sections.forEach((section) => {
@@ -859,7 +843,6 @@ function updateActiveCategory(categoryName) {
     if (btnCategoryName === categoryName) {
       btn.classList.add("category-active");
       btn.setAttribute("aria-pressed", "true");
-      // Scroll suave de la barra de categorías para mostrar el botón activo
       btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
     } else {
       btn.classList.remove("category-active");
@@ -868,9 +851,7 @@ function updateActiveCategory(categoryName) {
   });
 }
 
-// Insertar menú según categoría (REUTILIZADO PARA COMPATIBILIDAD, AHORA OBSOLETO)
 function renderMenu(seleccionada) {
-  // Nota especial para primera categoría si está seleccionada y sin productos
   if (seleccionada === "Nuestra Cocina No Es 100% Sin Tacc, A Excepción De Nuestras Opciones De Pastelería (consultar Stock)") {
     const note = createElement("section", { className: "menu-section" });
     const title = createElement("h2", {
@@ -878,10 +859,9 @@ function renderMenu(seleccionada) {
     });
     note.appendChild(title);
     container.appendChild(note);
-    return; // No mostrar productos en esta categoría
+    return;
   }
 
-  // Scroll a la sección
   const sectionId = seleccionada.replace(/\s+/g, "-").toLowerCase();
   const sectionEl = document.getElementById(sectionId);
   if (sectionEl) {
@@ -889,7 +869,6 @@ function renderMenu(seleccionada) {
   }
 }
 
-// Lightbox funcionalidad
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 const lightboxClose = document.getElementById("lightbox-close");
@@ -906,11 +885,9 @@ function closeLightbox() {
   lightbox.classList.remove("is-visible");
   lightboxImg.src = "";
   document.body.style.overflow = "";
-  // Volver foco al menú
   document.activeElement.blur();
 }
 
-// Eventos cerrar lightbox
 lightboxClose.addEventListener("click", closeLightbox);
 lightbox.addEventListener("click", (e) => {
   if (e.target === lightbox) closeLightbox();
@@ -921,37 +898,31 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// Manejo categorías
 const categoryButtons = document.querySelectorAll(".category-bar .category");
 categoryButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     const categoryName = btn.dataset.categoryName;
-    if (!categoryName) return; // Guard clause if text is somehow missing or not found
+    if (!categoryName) return;
 
     const sectionId = categoryName.replace(/\s+/g, "-").toLowerCase();
     const sectionElement = document.getElementById(sectionId);
     if (sectionElement) {
-      // Desactivamos temporalmente el observer para evitar conflictos
       window.removeEventListener("scroll", handleScroll, { passive: true });
-      lenis.scrollTo(sectionElement, { offset: -150 }); // Usamos Lenis para el scroll
+      lenis.scrollTo(sectionElement, { offset: -150 });
       updateActiveCategory(categoryName);
-      // Reactivamos el listener
       setTimeout(() => window.addEventListener("scroll", handleScroll, { passive: true }), 1000);
     }
   });
 });
 
-// --- INICIALIZACIÓN ---
-let lenis; // Declaramos la variable Lenis
+let lenis;
 
 document.addEventListener("DOMContentLoaded", () => {
   renderAllProducts();
   document.getElementById("search-input").addEventListener("input", filterProducts);
   window.addEventListener("scroll", handleScroll, { passive: true });
-  createScrollspy(); // This will handle initial activation
-  // Removed: updateActiveCategory(categoryButtons[0].querySelector('.category-text').textContent.trim()); // Activa la primera categoría al cargar
+  createScrollspy();
 
-  // --- Inicialización de Lenis (Smooth Scroll) ---
   lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -964,7 +935,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   requestAnimationFrame(raf);
 
-  // --- Lógica para el desplegable "Ver más" en móvil ---
   const moreInfoToggle = document.getElementById("more-info-toggle");
   const moreInfoPanel = document.getElementById("more-info-panel");
   const mobileOverlay = document.getElementById("mobile-info-overlay");
@@ -974,14 +944,14 @@ document.addEventListener("DOMContentLoaded", () => {
     moreInfoToggle.setAttribute("aria-expanded", "true");
     moreInfoPanel.classList.add("is-open");
     mobileOverlay.classList.add("is-active");
-    document.body.style.overflow = "hidden"; // Bloquea el scroll del fondo
+    document.body.style.overflow = "hidden";
   }
 
   function closeMobileInfo() {
     moreInfoToggle.setAttribute("aria-expanded", "false");
     moreInfoPanel.classList.remove("is-open");
     mobileOverlay.classList.remove("is-active");
-    document.body.style.overflow = ""; // Restaura el scroll
+    document.body.style.overflow = "";
   }
 
   if (moreInfoToggle && moreInfoPanel && mobileOverlay && closeMoreInfoBtn) {
@@ -995,14 +965,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Cierra el panel si se hace clic en el overlay
     mobileOverlay.addEventListener("click", closeMobileInfo);
 
-    // Cierra el panel si se hace clic en la X
     closeMoreInfoBtn.addEventListener("click", closeMobileInfo);
   }
 
-  // --- Lógica para el panel de horarios en MÓVIL ---
   const mobileHoursToggle = document.getElementById("mobile-hours-toggle");
   const mobileHoursPanel = document.getElementById("mobile-hours-panel");
   const closeMobileHoursBtn = document.getElementById("close-mobile-hours");
@@ -1019,16 +986,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (mobileHoursToggle && mobileHoursPanel && closeMobileHoursBtn) {
     mobileHoursToggle.addEventListener("click", (e) => {
-      e.stopPropagation(); // Detiene la propagación para que no cierre el panel de "Ver Info"
+      e.stopPropagation();
       openMobileHours();
     });
 
     closeMobileHoursBtn.addEventListener("click", closeMobileHours);
-    // También se puede cerrar haciendo clic en el overlay principal
     mobileOverlay.addEventListener("click", closeMobileHours);
   }
 
-  // --- Lógica para el desplegable de horarios en ESCRITORIO ---
   const desktopHoursToggle = document.getElementById("desktop-hours-toggle");
   const desktopHoursPanel = document.getElementById("desktop-hours-panel");
   const closeDesktopHoursBtn = document.getElementById("close-desktop-hours");
@@ -1040,13 +1005,11 @@ document.addEventListener("DOMContentLoaded", () => {
       desktopHoursToggle.setAttribute("aria-expanded", isOpen);
     });
 
-    // Cierra el panel al hacer clic en la X
     closeDesktopHoursBtn.addEventListener("click", () => {
       desktopHoursPanel.classList.remove("is-open");
       desktopHoursToggle.setAttribute("aria-expanded", "false");
     });
 
-    // Cierra el panel si se hace clic fuera
     document.addEventListener("click", (e) => {
       if (desktopHoursPanel.classList.contains("is-open") && !desktopHoursPanel.contains(e.target) && !desktopHoursToggle.contains(e.target)) {
         desktopHoursPanel.classList.remove("is-open");
@@ -1055,20 +1018,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- Lógica para el indicador de Abierto/Cerrado ---
   function checkOpenStatus() {
     const schedule = {
-      0: null, // Domingo (Cerrado)
-      1: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }], // Lunes
-      2: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }], // Martes
-      3: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }], // Miércoles
-      4: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }], // Jueves
-      5: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }], // Viernes
-      6: [{ open: "09:15", close: "12:30" }, { open: "17:00", close: "21:00" }], // Sábado
+      0: null,
+      1: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
+      2: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
+      3: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
+      4: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
+      5: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
+      6: [{ open: "09:15", close: "12:30" }, { open: "17:00", close: "21:00" }],
     };
 
     const now = new Date();
-    const dayOfWeek = now.getDay(); // 0 = Domingo, 1 = Lunes, ...
+    const dayOfWeek = now.getDay();
     const currentTime = now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0');
 
     const todaysSchedule = schedule[dayOfWeek];
@@ -1101,11 +1063,9 @@ document.addEventListener("DOMContentLoaded", () => {
     setStatus(mobileStatusIndicator, isOpen);
   }
 
-  // Comprobar el estado al cargar la página y luego cada minuto
   checkOpenStatus();
-  setInterval(checkOpenStatus, 60000); // 60000 ms = 1 minuto
+  setInterval(checkOpenStatus, 60000);
 
-  // --- Lógica para el botón de Volver Arriba ---
   const scrollUpBtn = document.getElementById("scroll-up");
 
   function toggleScrollUpButton() {
@@ -1120,6 +1080,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   scrollUpBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    lenis.scrollTo(0); // Usamos Lenis para un scroll suave
+    lenis.scrollTo(0);
   });
 });
