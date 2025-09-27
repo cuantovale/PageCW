@@ -3,55 +3,55 @@ const MENU_DATA = [
     categoria: "Cafetería",
     productos: [
       {
-        nombre: "Café espresso",
+        nombre: "Café Espresso",
         descripcion: "",
         precio: 2500,
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Café jarrita",
+        nombre: "Café Jarrita",
         descripcion: "",
         precio: 2500,
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Café doble",
+        nombre: "Café Doble",
         descripcion: "",
         precio: 3800,
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Con leche",
+        nombre: "Café con Leche",
         descripcion: "",
         precio: 2800,
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Cortado",
+        nombre: "Café Cortado",
         descripcion: "",
         precio: 2800,
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Lágrima",
+        nombre: "Café Lágrima",
         descripcion: "",
         precio: 2900,
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Con crema",
+        nombre: "Café con Crema",
         descripcion: "",
         precio: 5700,
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Irlandés",
+        nombre: "Café Irlandés",
         descripcion: "",
         precio: 6900,
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Affogato",
+        nombre: "Café Affogato",
         descripcion: "",
         precio: 5500,
         img: "/italia/images/productos/default.svg"
@@ -81,7 +81,7 @@ const MENU_DATA = [
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Freddo",
+        nombre: "Café Freddo",
         descripcion: "",
         precio: 5800,
         img: "/italia/images/productos/default.svg"
@@ -93,7 +93,7 @@ const MENU_DATA = [
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Submarino",
+        nombre: "Café Submarino",
         descripcion: "",
         precio: 4700,
         img: "/italia/images/productos/default.svg"
@@ -377,43 +377,43 @@ const MENU_DATA = [
     categoria: "Combos",
     productos: [
       {
-        nombre: "Clásico",
+        nombre: "Combo Clásico",
         descripcion: "",
         precio: 7000,
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Chipá",
+        nombre: "Combo Chipá",
         descripcion: "",
         precio: 6900,
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Proteico",
+        nombre: "Combo Proteico",
         descripcion: "",
         precio: 13000,
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Fit",
+        nombre: "Combo Fit",
         descripcion: "",
         precio: 10800,
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Italia",
+        nombre: "Combo Italia",
         descripcion: "",
         precio: 12400,
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Mbejú",
+        nombre: "Combo Mbejú",
         descripcion: "",
         precio: 11300,
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Para dos",
+        nombre: "Combo Para dos",
         descripcion: "",
         precio: 23700,
         img: "/italia/images/productos/default.svg"
@@ -613,37 +613,37 @@ const MENU_DATA = [
     categoria: "Mbejú",
     productos: [
       {
-        nombre: "Jamón y queso",
+        nombre: "Mbejú de Jamón y Queso",
         descripcion: "",
         precio: 9000,
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Rúcula y jamón crudo",
+        nombre: "Mbejú de Rúcula y Jamón Crudo",
         descripcion: "",
         precio: 10500,
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Rúcula, palta, huevo revuelto y tomates confitados",
+        nombre: "Mbejú de Rúcula, Palta, Huevo Revuelto y Tomates Confitados",
         descripcion: "",
         precio: 10500,
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Rúcula, cerdo ahumado y tomates confitados",
+        nombre: "Mbejú de Rúcula, Cerdo Ahumado y Tomates Confitados",
         descripcion: "",
         precio: 10500,
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Palta y huevo revuelto",
+        nombre: "Mbejú de Palta y Huevo Revuelto",
         descripcion: "",
         precio: 9000,
         img: "/italia/images/productos/default.svg"
       },
       {
-        nombre: "Jamón, rúcula y tomates confitados",
+        nombre: "Mbejú de Jamón, Rúcula y Tomates Confitados",
         descripcion: "",
         precio: 9000,
         img: "/italia/images/productos/default.svg"
@@ -709,12 +709,27 @@ function createProductSection(catData) {
   const h2 = createElement("h2", { text: catData.categoria });
   section.appendChild(h2);
 
-  catData.productos.forEach(({ nombre, descripcion, precio, img }) => {
-    const item = createProductItem({ nombre, descripcion, precio, img });
+  catData.productos.forEach((product) => {
+    const item = createProductItem(product);
     section.appendChild(item);
   });
 
   return section;
+}
+
+function createAddToCartButton(product) {
+  const button = createElement("button", {
+    className: "add-to-cart-btn",
+    html: '<i class="fas fa-plus"></i> Añadir',
+  });
+  button.addEventListener("click", (e) => {
+    e.stopPropagation();
+    addToCart(product);
+    button.innerHTML = '<i class="fas fa-check"></i> Añadido';
+    button.classList.add("added");
+    setTimeout(() => { button.innerHTML = '<i class="fas fa-plus"></i> Añadir'; button.classList.remove("added"); }, 1500);
+  });
+  return button;
 }
 
 function createProductItem({ nombre, descripcion, precio, img }) {
@@ -731,6 +746,11 @@ function createProductItem({ nombre, descripcion, precio, img }) {
     const priceEl = createElement("div", { className: "product-price", text: formatPrice(precio) });
     info.appendChild(priceEl);
   }
+  if (precio !== null && precio !== undefined) {
+    const addButton = createAddToCartButton({ nombre, precio, descripcion });
+    info.appendChild(addButton);
+  }
+
   item.appendChild(info);
 
   const imgContainer = createElement("div", {
@@ -851,24 +871,6 @@ function updateActiveCategory(categoryName) {
   });
 }
 
-function renderMenu(seleccionada) {
-  if (seleccionada === "Nuestra Cocina No Es 100% Sin Tacc, A Excepción De Nuestras Opciones De Pastelería (consultar Stock)") {
-    const note = createElement("section", { className: "menu-section" });
-    const title = createElement("h2", {
-      html: "<u><strong>Nuestra cocina no es 100% sin TACC, a excepción de nuestras opciones de pastelería (consultar stock)</strong></u>",
-    });
-    note.appendChild(title);
-    container.appendChild(note);
-    return;
-  }
-
-  const sectionId = seleccionada.replace(/\s+/g, "-").toLowerCase();
-  const sectionEl = document.getElementById(sectionId);
-  if (sectionEl) {
-    sectionEl.scrollIntoView({ behavior: "smooth" });
-  }
-}
-
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 const lightboxClose = document.getElementById("lightbox-close");
@@ -888,6 +890,38 @@ function closeLightbox() {
   document.activeElement.blur();
 }
 
+// --- Lógica del Carrito ---
+function getCart() {
+  return JSON.parse(localStorage.getItem("italiaCafeCart")) || [];
+}
+
+function saveCart(cart) {
+  localStorage.setItem("italiaCafeCart", JSON.stringify(cart));
+  updateCartUI();
+}
+
+function addToCart(product) {
+  const cart = getCart();
+  cart.push(product);
+  saveCart(cart);
+}
+
+function updateCartUI() {
+  const cart = getCart();
+  const cartBar = document.getElementById("cart-bar");
+  const cartItemCountText = document.getElementById("cart-item-count-text");
+
+  if (!cartBar || !cartItemCountText) return;
+
+  if (cart.length > 0) {
+    cartItemCountText.textContent = `Ver Carrito (${cart.length})`;
+    cartBar.classList.remove("hidden");
+  } else {
+    cartBar.classList.add("hidden");
+  }
+}
+
+// --- Event Listeners ---
 lightboxClose.addEventListener("click", closeLightbox);
 lightbox.addEventListener("click", (e) => {
   if (e.target === lightbox) closeLightbox();
@@ -918,11 +952,16 @@ categoryButtons.forEach((btn) => {
 let lenis;
 
 document.addEventListener("DOMContentLoaded", () => {
+  // --- Inicialización Principal ---
   renderAllProducts();
-  document.getElementById("search-input").addEventListener("input", filterProducts);
-  window.addEventListener("scroll", handleScroll, { passive: true });
+  updateCartUI();
   createScrollspy();
 
+  // --- Listeners de UI ---
+  document.getElementById("search-input").addEventListener("input", filterProducts);
+  window.addEventListener("scroll", handleScroll, { passive: true });
+
+  // --- Lenis (Smooth Scroll) ---
   lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -932,9 +971,9 @@ document.addEventListener("DOMContentLoaded", () => {
     lenis.raf(time);
     requestAnimationFrame(raf);
   }
-
   requestAnimationFrame(raf);
 
+  // --- Lógica de Paneles Móviles y de Escritorio ---
   const moreInfoToggle = document.getElementById("more-info-toggle");
   const moreInfoPanel = document.getElementById("more-info-panel");
   const mobileOverlay = document.getElementById("mobile-info-overlay");
@@ -958,15 +997,9 @@ document.addEventListener("DOMContentLoaded", () => {
     moreInfoToggle.addEventListener("click", (e) => {
       e.stopPropagation();
       const isExpanded = moreInfoPanel.classList.contains("is-open");
-      if (isExpanded) {
-        closeMobileInfo();
-      } else {
-        openMobileInfo();
-      }
+      isExpanded ? closeMobileInfo() : openMobileInfo();
     });
-
     mobileOverlay.addEventListener("click", closeMobileInfo);
-
     closeMoreInfoBtn.addEventListener("click", closeMobileInfo);
   }
 
@@ -989,7 +1022,6 @@ document.addEventListener("DOMContentLoaded", () => {
       e.stopPropagation();
       openMobileHours();
     });
-
     closeMobileHoursBtn.addEventListener("click", closeMobileHours);
     mobileOverlay.addEventListener("click", closeMobileHours);
   }
@@ -1004,12 +1036,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const isOpen = desktopHoursPanel.classList.toggle("is-open");
       desktopHoursToggle.setAttribute("aria-expanded", isOpen);
     });
-
     closeDesktopHoursBtn.addEventListener("click", () => {
       desktopHoursPanel.classList.remove("is-open");
       desktopHoursToggle.setAttribute("aria-expanded", "false");
     });
-
     document.addEventListener("click", (e) => {
       if (desktopHoursPanel.classList.contains("is-open") && !desktopHoursPanel.contains(e.target) && !desktopHoursToggle.contains(e.target)) {
         desktopHoursPanel.classList.remove("is-open");
@@ -1018,6 +1048,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // --- Lógica de Horarios (Open/Closed) ---
   function checkOpenStatus() {
     const schedule = {
       0: null,
@@ -1028,14 +1059,11 @@ document.addEventListener("DOMContentLoaded", () => {
       5: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
       6: [{ open: "09:15", close: "12:30" }, { open: "17:00", close: "21:00" }],
     };
-
     const now = new Date();
     const dayOfWeek = now.getDay();
     const currentTime = now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0');
-
     const todaysSchedule = schedule[dayOfWeek];
     let isOpen = false;
-
     if (todaysSchedule) {
       for (const slot of todaysSchedule) {
         if (currentTime >= slot.open && currentTime < slot.close) {
@@ -1044,40 +1072,25 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     }
-
     const statusIndicator = document.getElementById("open-status-indicator");
     const mobileStatusIndicator = document.getElementById("mobile-open-status-indicator");
-
     const setStatus = (indicator, isOpen) => {
       if (!indicator) return;
-      if (isOpen) {
-        indicator.textContent = "Abierto";
-        indicator.className = "open-status is-open";
-      } else {
-        indicator.textContent = "Cerrado";
-        indicator.className = "open-status is-closed";
-      }
+      indicator.textContent = isOpen ? "Abierto" : "Cerrado";
+      indicator.className = `open-status ${isOpen ? "is-open" : "is-closed"}`;
     };
-
     setStatus(statusIndicator, isOpen);
     setStatus(mobileStatusIndicator, isOpen);
   }
-
   checkOpenStatus();
   setInterval(checkOpenStatus, 60000);
 
+  // --- Botón de Scroll Up ---
   const scrollUpBtn = document.getElementById("scroll-up");
-
   function toggleScrollUpButton() {
-    if (window.scrollY >= 350) {
-      scrollUpBtn.classList.add("show-scroll");
-    } else {
-      scrollUpBtn.classList.remove("show-scroll");
-    }
+    scrollUpBtn.classList.toggle("show-scroll", window.scrollY >= 350);
   }
-
   window.addEventListener("scroll", toggleScrollUpButton);
-
   scrollUpBtn.addEventListener("click", (e) => {
     e.preventDefault();
     lenis.scrollTo(0);
