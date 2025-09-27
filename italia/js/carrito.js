@@ -59,11 +59,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const schedule = {
       0: null,
-      1: [{ open: 7, close: 12.5 }, { open: 17, close: 21 }], // Lunes a Viernes
-      6: [{ open: 9.25, close: 12.5 }, { open: 17, close: 21 }], // Sábado
+      1: [{ open: 7, close: 12.5 }, { open: 17, close: 21 }],
+      6: [{ open: 9.25, close: 12.5 }, { open: 17, close: 21 }],
     };
 
-    // Usar la zona horaria de Argentina (ART, UTC-3) para consistencia
     const now = new Date(new Date().toLocaleString("en-US", {timeZone: "America/Argentina/Buenos_Aires"}));
 
     const dayOfWeek = now.getDay();

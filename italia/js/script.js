@@ -835,7 +835,6 @@ function handleScroll() {
   lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
 }
 
-// --- Lógica de Scrollspy (Intersection Observer) ---
 function createScrollspy() {
   const sections = document.querySelectorAll(".menu-section");
   const observer = new IntersectionObserver(
@@ -890,7 +889,6 @@ function closeLightbox() {
   document.activeElement.blur();
 }
 
-// --- Lógica del Carrito ---
 function getCart() {
   return JSON.parse(localStorage.getItem("italiaCafeCart")) || [];
 }
@@ -921,7 +919,6 @@ function updateCartUI() {
   }
 }
 
-// --- Event Listeners ---
 lightboxClose.addEventListener("click", closeLightbox);
 lightbox.addEventListener("click", (e) => {
   if (e.target === lightbox) closeLightbox();
@@ -952,16 +949,13 @@ categoryButtons.forEach((btn) => {
 let lenis;
 
 document.addEventListener("DOMContentLoaded", () => {
-  // --- Inicialización Principal ---
   renderAllProducts();
   updateCartUI();
   createScrollspy();
 
-  // --- Listeners de UI ---
   document.getElementById("search-input").addEventListener("input", filterProducts);
   window.addEventListener("scroll", handleScroll, { passive: true });
 
-  // --- Lenis (Smooth Scroll) ---
   lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -973,7 +967,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   requestAnimationFrame(raf);
 
-  // --- Lógica de Paneles Móviles y de Escritorio ---
   const moreInfoToggle = document.getElementById("more-info-toggle");
   const moreInfoPanel = document.getElementById("more-info-panel");
   const mobileOverlay = document.getElementById("mobile-info-overlay");
@@ -1048,7 +1041,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- Lógica de Horarios (Open/Closed) ---
   function checkOpenStatus() {
     const schedule = {
       0: null,
@@ -1085,7 +1077,6 @@ document.addEventListener("DOMContentLoaded", () => {
   checkOpenStatus();
   setInterval(checkOpenStatus, 60000);
 
-  // --- Botón de Scroll Up ---
   const scrollUpBtn = document.getElementById("scroll-up");
   function toggleScrollUpButton() {
     scrollUpBtn.classList.toggle("show-scroll", window.scrollY >= 350);

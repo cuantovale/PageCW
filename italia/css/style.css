@@ -476,7 +476,7 @@ body::-webkit-scrollbar-thumb {
   cursor: pointer;
   user-select: none;
   padding: 0;
-  width: 80px; /* Ancho fijo para cada botón */
+  width: 80px;
 }
 
 .category-icon-wrapper {
@@ -851,7 +851,6 @@ body::-webkit-scrollbar-thumb {
   bottom: 40px;
 }
 
-/* --- Estilos del Carrito --- */
 .add-to-cart-btn {
   background-color: var(--color-bg-category);
   border: 1px solid var(--color-price);
