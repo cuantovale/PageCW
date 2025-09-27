@@ -57,20 +57,42 @@ document.addEventListener("DOMContentLoaded", () => {
     const deliveryOptionEl = document.querySelector('.delivery-option-btn[data-value="delivery"]');
     if (!deliveryOptionEl) return;
 
+    const schedule = {
+      0: null, // Domingo
+      1: [{ open: 7, close: 12.5 }, { open: 17, close: 21 }], // Lunes a Viernes
+      6: [{ open: 9.25, close: 12.5 }, { open: 17, close: 21 }], // Sábado
+    };
+
     const now = new Date();
+    const dayOfWeek = now.getDay();
     const currentHour = now.getHours();
     const currentMinutes = now.getMinutes();
     const currentTime = currentHour + currentMinutes / 60;
 
+    const todaysSchedule = schedule[dayOfWeek] || schedule[1]; // Usar L-V como default si no es Sábado/Domingo
+
+    let isOpen = false;
+    if (todaysSchedule) {
+      for (const slot of todaysSchedule) {
+        if (currentTime >= slot.open && currentTime < slot.close) {
+          isOpen = true;
+          break;
+        }
+      }
+    }
+
     const isDeliveryTime = currentTime >= 7.5 && currentTime < 9.5;
 
-    if (isDeliveryTime) {
+    if (isOpen) {
       deliveryOptionEl.disabled = false;
-      deliveryTimeNotice.innerHTML = '<i class="fas fa-clock"></i> Envío gratis de 7:30 a 9:30 hs.';
+      deliveryOptionEl.textContent = "Envío";
+      deliveryTimeNotice.innerHTML = isDeliveryTime
+        ? '<i class="fas fa-check-circle" style="color: var(--color-price);"></i> Envío gratis disponible ahora (de 7:30 a 9:30 hs).'
+        : '<i class="fas fa-info-circle"></i> Envío gratis de 7:30 a 9:30 hs. Fuera de dicho horario, se aplicará costo de envío.';
     } else {
       deliveryOptionEl.disabled = true;
       deliveryOptionEl.textContent = "Envío (No disp.)";
-      deliveryTimeNotice.innerHTML = '<i class="fas fa-clock"></i> Envío gratis de 7:30 a 9:30 hs. Fuera de dicho horario, se aplicará el precio del envío.';
+      deliveryTimeNotice.innerHTML = '<i class="fas fa-times-circle"></i> Los envíos no están disponibles en este momento.';
     }
   }
 
