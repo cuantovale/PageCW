@@ -58,18 +58,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!deliveryOptionEl) return;
 
     const schedule = {
-      0: null, // Domingo
+      0: null,
       1: [{ open: 7, close: 12.5 }, { open: 17, close: 21 }], // Lunes a Viernes
       6: [{ open: 9.25, close: 12.5 }, { open: 17, close: 21 }], // Sábado
     };
 
-    const now = new Date();
+    // Usar la zona horaria de Argentina (ART, UTC-3) para consistencia
+    const now = new Date(new Date().toLocaleString("en-US", {timeZone: "America/Argentina/Buenos_Aires"}));
+
     const dayOfWeek = now.getDay();
     const currentHour = now.getHours();
     const currentMinutes = now.getMinutes();
     const currentTime = currentHour + currentMinutes / 60;
 
-    const todaysSchedule = schedule[dayOfWeek] || schedule[1]; // Usar L-V como default si no es Sábado/Domingo
+    const todaysSchedule = schedule[dayOfWeek] || schedule[1];
 
     let isOpen = false;
     if (todaysSchedule) {
