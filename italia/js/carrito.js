@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       deliveryOptionEl.disabled = true;
       deliveryOptionEl.textContent = "Envío (No disp.)";
-      deliveryTimeNotice.innerHTML = '<i class="fas fa-clock"></i> Envío gratis de 7:30 a 9:30 hs. Fuera de ese horario se cobra envío.';
+      deliveryTimeNotice.innerHTML = '<i class="fas fa-clock"></i> Envío gratis de 7:30 a 9:30 hs. Fuera de dicho horario, se aplicará el precio del envío.';
     }
   }
 
