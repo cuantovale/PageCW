@@ -678,6 +678,28 @@ function createElement(type, options = {}) {
   return el;
 }
 
+const STORE_SCHEDULE = {
+  // DO: Cerrado
+  0: null,
+  // LU-VI: 07:00-12:30 y 17:00-21:00
+  1: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
+  2: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
+  3: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
+  4: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
+  5: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
+  // SA: 09:00-12:30 y 17:00-21:00
+  6: [{ open: "09:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
+};
+
+function isStoreOpen() {
+  const now = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Argentina/Buenos_Aires" }));
+  const dayOfWeek = now.getDay();
+  const currentTime = now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0');
+  const todaysSchedule = STORE_SCHEDULE[dayOfWeek];
+  if (!todaysSchedule) return false;
+  return todaysSchedule.some(slot => currentTime >= slot.open && currentTime < slot.close);
+}
+
 function renderAllProducts() {
   const container = document.getElementById("menu-container");
   container.innerHTML = "";
@@ -724,10 +746,20 @@ function createAddToCartButton(product) {
   });
   button.addEventListener("click", (e) => {
     e.stopPropagation();
+    if (!isStoreOpen()) {
+      const originalHTML = button.innerHTML;
+      button.innerHTML = '<i class="fas fa-times"></i> Cerrado';
+      button.classList.add("disabled-temp");
+      setTimeout(() => {
+        button.classList.remove("disabled-temp");
+        button.innerHTML = originalHTML;
+      }, 2000);
+      return;
+    }
+
+    e.stopPropagation();
     addToCart(product);
     button.innerHTML = '<i class="fas fa-check"></i> Añadido';
-    button.classList.add("added");
-    setTimeout(() => { button.innerHTML = '<i class="fas fa-plus"></i> Añadir'; button.classList.remove("added"); }, 1500);
   });
   return button;
 }
@@ -953,6 +985,11 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCartUI();
   createScrollspy();
 
+  if (!isStoreOpen()) {
+    const closedMessage = document.getElementById("closed-store-message");
+    if(closedMessage) closedMessage.classList.remove("hidden");
+  }
+
   document.getElementById("search-input").addEventListener("input", filterProducts);
   window.addEventListener("scroll", handleScroll, { passive: true });
 
@@ -1042,28 +1079,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function checkOpenStatus() {
-    const schedule = {
-      0: null,
-      1: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
-      2: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
-      3: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
-      4: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
-      5: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
-      6: [{ open: "09:15", close: "12:30" }, { open: "17:00", close: "21:00" }],
-    };
-    const now = new Date();
-    const dayOfWeek = now.getDay();
-    const currentTime = now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0');
-    const todaysSchedule = schedule[dayOfWeek];
-    let isOpen = false;
-    if (todaysSchedule) {
-      for (const slot of todaysSchedule) {
-        if (currentTime >= slot.open && currentTime < slot.close) {
-          isOpen = true;
-          break;
-        }
-      }
-    }
+    const isOpen = isStoreOpen();
     const statusIndicator = document.getElementById("open-status-indicator");
     const mobileStatusIndicator = document.getElementById("mobile-open-status-indicator");
     const setStatus = (indicator, isOpen) => {

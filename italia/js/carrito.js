@@ -8,8 +8,32 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartSummary = document.getElementById("cart-summary");
   const deliveryTimeNotice = document.getElementById("delivery-time-notice");
   const deliveryOptionsContainer = document.querySelector(".delivery-options-container");
+  const closedStoreOverlay = document.getElementById("closed-store-overlay");
   const deliverySlider = document.querySelector(".delivery-slider");
   const deliveryButtons = document.querySelectorAll(".delivery-option-btn");
+
+  const STORE_SCHEDULE = {
+    // DO: Cerrado
+    0: null,
+    // LU-VI: 07:00-12:30 y 17:00-21:00
+    1: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
+    2: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
+    3: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
+    4: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
+    5: [{ open: "07:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
+    // SA: 09:00-12:30 y 17:00-21:00
+    6: [{ open: "09:00", close: "12:30" }, { open: "17:00", close: "21:00" }],
+  };
+
+  function isStoreOpen() {
+    // Usamos el timezone de Argentina para asegurar la hora correcta.
+    const now = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Argentina/Buenos_Aires" }));
+    const dayOfWeek = now.getDay();
+    const currentTime = now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0');
+    const todaysSchedule = STORE_SCHEDULE[dayOfWeek];
+    if (!todaysSchedule) return false;
+    return todaysSchedule.some(slot => currentTime >= slot.open && currentTime < slot.close);
+  }
 
   function formatPrice(num) {
     if (num === null || num === undefined) return "";
@@ -191,6 +215,12 @@ document.addEventListener("DOMContentLoaded", () => {
   checkoutForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
+    if (!isStoreOpen()) {
+      alert("El local se encuentra cerrado en este momento. No se puede enviar el pedido.");
+      location.reload(); // Recargar para reflejar el estado deshabilitado
+      return;
+    }
+
     const cart = getCart();
     if (cart.length === 0) {
       alert("Tu carrito está vacío.");
@@ -253,4 +283,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderCart();
   checkDeliveryAvailability();
+
+  // Mostrar mensaje de tienda cerrada y ocultar carrito si es necesario
+  if (!isStoreOpen()) {
+    if (closedStoreOverlay) closedStoreOverlay.classList.remove("hidden");
+    if (cartItemsContainer) cartItemsContainer.classList.add("hidden");
+    if (cartSummary) cartSummary.classList.add("hidden");
+    if (emptyCartMessage) emptyCartMessage.classList.add("hidden");
+    if (deliveryOptionsContainer) deliveryOptionsContainer.parentElement.classList.add("hidden");
+  } else {
+    if (closedStoreOverlay) closedStoreOverlay.classList.add("hidden");
+  }
 });

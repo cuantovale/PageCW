@@ -28,7 +28,7 @@
 <body>
 <header class="header">
   <div class="header-brand">
-    <img src="/italia/images/logo.png" alt="italia cafe" class="logo" />
+    <img src="/italia/images/logo.png" alt="italia cafe" class="logo" draggable="false" oncontextmenu="return false;" />
     <h1 class="title">Italia Café</h1>
   </div>
 
@@ -54,7 +54,7 @@
             <li><i class="fas fa-clock"></i><strong>MI:</strong><span>07:00 a 12:30</span><span class="separator">|</span><span>17:00 a 21:00</span></li>
             <li><i class="fas fa-clock"></i><strong>JU:</strong><span>07:00 a 12:30</span><span class="separator">|</span><span>17:00 a 21:00</span></li>
             <li><i class="fas fa-clock"></i><strong>VI:</strong><span>07:00 a 12:30</span><span class="separator">|</span><span>17:00 a 21:00</span></li>
-            <li><i class="fas fa-clock"></i><strong>SA:</strong><span>09:15 a 12:30</span><span class="separator">|</span><span>17:00 a 21:00</span></li>
+            <li><i class="fas fa-clock"></i><strong>SA:</strong><span>09:00 a 12:30</span><span class="separator">|</span><span>17:00 a 21:00</span></li>
           </ul>
         </div>
       </div>
@@ -116,7 +116,7 @@
       <li><i class="fas fa-clock"></i><strong>MI:</strong><span>07:00 a 12:30</span><span class="separator">|</span><span>17:00 a 21:00</span></li>
       <li><i class="fas fa-clock"></i><strong>JU:</strong><span>07:00 a 12:30</span><span class="separator">|</span><span>17:00 a 21:00</span></li>
       <li><i class="fas fa-clock"></i><strong>VI:</strong><span>07:00 a 12:30</span><span class="separator">|</span><span>17:00 a 21:00</span></li>
-      <li><i class="fas fa-clock"></i><strong>SA:</strong><span>09:15 a 12:30</span><span class="separator">|</span><span>17:00 a 21:00</span></li>
+      <li><i class="fas fa-clock"></i><strong>SA:</strong><span>09:00 a 12:30</span><span class="separator">|</span><span>17:00 a 21:00</span></li>
     </ul>
   </div>
 
@@ -167,13 +167,17 @@
 </div>
 
 <main id="menu-container" class="menu-container" tabindex="0" aria-live="polite" aria-atomic="true">
+  <div id="closed-store-message" class="closed-store-message hidden">
+    <i class="fas fa-door-closed"></i>
+    <p>El local se encuentra cerrado. No se pueden agregar productos al carrito en este momento.</p>
+  </div>
 </main>
 
 <footer class="footer">
   <div class="footer-content">
     <div class="footer-info">
       <div class="footer-brand">
-        <img src="images/logo.png" alt="Logo Italia Café" class="footer-logo" />
+        <img src="images/logo.png" alt="Logo Italia Café" class="footer-logo" draggable="false" oncontextmenu="return false;" />
         <h3 class="footer-title">Italia Café</h3>
       </div>
       <p class="footer-address">
