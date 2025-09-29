@@ -1,4 +1,4 @@
-const MENU_DATA = [
+var MENU_DATA = [
   {
     categoria: "Cafetería",
     productos: [
